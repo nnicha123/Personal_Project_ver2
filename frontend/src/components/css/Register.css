@@ -1,0 +1,19 @@
+.registerOuter {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: max-content;
+  margin-top: 50px;
+}
+.register {
+  margin: 0 10px;
+  width: 400px;
+  height: max-content;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.register h3 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}

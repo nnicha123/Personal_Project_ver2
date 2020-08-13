@@ -1,0 +1,47 @@
+.outerProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-bannerMyRestaurant {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+.changeCover {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.image-bannerMyRestaurant img {
+  width: 100%;
+  height: 100%;
+}
+
+.profileContents {
+  padding: 40px;
+  width: 100%;
+}
+.rating-info {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 400px;
+  margin: 10px;
+}
+.description {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 700px;
+  margin: 10px;
+  height: 200px;
+}
+.ButtonGroup {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+}
+Button {
+  margin: 10px;
+}

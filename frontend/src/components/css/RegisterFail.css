@@ -1,0 +1,19 @@
+.registerFail {
+  display: flex;
+  min-height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+.innerFail {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.buttonDiv {
+  margin-top: 20px;
+}

@@ -1,0 +1,41 @@
+.bookingOuter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.steps {
+  width: 1000px;
+  height: 400px;
+  /* background-color: green; */
+}
+.stepsSmall {
+  width: 1000px;
+  height: 160px;
+}
+.calendar {
+  background-color: rgb(223, 223, 223);
+  width: 100%;
+  height: 300px;
+}
+.newCalendar {
+  background-color: rgb(223, 223, 223);
+  width: 100%;
+  height: 300px;
+}
+/* Calendar {
+  width: 100%;
+  height: 100%;
+} */
+.upload {
+  background-color: rgb(223, 223, 223);
+  width: 100%;
+  height: 100px;
+  position: relative;
+}
+.upload Button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

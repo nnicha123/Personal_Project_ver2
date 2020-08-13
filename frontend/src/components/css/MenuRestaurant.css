@@ -1,0 +1,81 @@
+.myMenus {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.menus {
+  width: 250px;
+  height: 300px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+.imageDiv {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+.menus:hover img {
+  transition: all 1s ease;
+  transform: scale(1.5);
+  opacity: 0.5;
+  cursor: pointer;
+}
+.imageDiv img {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: scale(1);
+}
+.textDiv {
+  padding: 20px;
+}
+.addMenu {
+  width: 250px;
+  height: 300px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  background-color: rgb(209, 206, 206);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  margin: 10px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  overflow: hidden;
+  transition: all 1s ease;
+}
+.addMenu:hover {
+  font-size: 80px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.addMenuForm {
+  width: 250px;
+  height: 300px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.form-group {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form-group input,
+.form-group textarea {
+  width: 90%;
+}
+Form {
+  display: flex;
+  flex-direction: column;
+}
+Form.Item {
+  margin: 0;
+}

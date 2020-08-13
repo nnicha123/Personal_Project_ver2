@@ -1,0 +1,47 @@
+.homeBanner {
+  width: 100%;
+  height: 300px;
+}
+.homeBanner img {
+  width: 100%;
+  height: 100%;
+}
+.mypromotionRestaurants {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.promotionRestaurants {
+  width: 200px;
+  height: 250px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  overflow: hidden;
+  text-align: left;
+}
+.promotionImageDiv {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+.promotionRestaurants:hover img {
+  transition: all 1s ease;
+  transform: scale(1.5);
+  opacity: 0.5;
+  cursor: pointer;
+}
+.promotionImageDiv img {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: scale(1);
+}
+
+.promotioncontentDiv {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

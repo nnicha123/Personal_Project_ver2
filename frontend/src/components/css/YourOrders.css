@@ -1,0 +1,55 @@
+.orderOuter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  margin: 40px;
+}
+.orderBox {
+  min-height: 500px;
+  width: 900px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.orderBox ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+.orderBox ul li div {
+  display: flex;
+}
+.order {
+  height: 100px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.order.green {
+  box-shadow: 0 1px 5px rgba(10, 199, 10, 0.6);
+  background-color: rgba(10, 199, 10, 0.6);
+}
+.order.red {
+  box-shadow: 0 1px 5px rgba(199, 32, 10, 0.6);
+  background-color: rgba(199, 32, 10, 0.6);
+}
+.orderDark {
+  height: 100px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  background-color: rgb(216, 214, 214);
+  font-size: 60px;
+  transition: all 1s ease;
+}
+.orderDark:hover {
+  font-size: 80px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.order img {
+  height: 50px;
+}

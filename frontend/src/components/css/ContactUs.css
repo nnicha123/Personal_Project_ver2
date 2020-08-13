@@ -1,0 +1,26 @@
+.contactOuter {
+  display: flex;
+  min-height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+.contact {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+.contact h3 {
+  font-size: 30px;
+}
+.contact-grid {
+  display: flex;
+  justify-content: space-between;
+}
+.contact-grid > div {
+  margin: 20px;
+}
