@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const PurchaseHistory = sequelize.define('purchase_history', {
+  const OrderedHistoryRes = sequelize.define('orderedhistory_rest', {
     status: {
       type: DataTypes.ENUM('completed', 'pending', 'rejected')
     },
@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   })
-  PurchaseHistory.associate = models => {
-    PurchaseHistory.belongsTo(models.user, { foreignKey: 'user_id' })
+  OrderedHistoryRes.associate = models => {
+    OrderedHistoryRes.belongsTo(models.user, { foreignKey: 'user_id' })
   }
-  return PurchaseHistory
+  return OrderedHistoryRes
 }

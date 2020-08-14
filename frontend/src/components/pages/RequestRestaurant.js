@@ -8,6 +8,7 @@ import { CheckCircleOutlined } from '@ant-design/icons';
 function RequestRestaurant() {
   const [menuPost, setMenuPost] = useState([])
   const [previousMenu, setPreviousMenu] = useState([])
+  const [doneRequests, setDoneRequests] = useState([])
   const [allResIds, setAllResIds] = useState([])
   const [allMenuIds, setAllMenuIds] = useState([])
   useEffect(() => {
@@ -27,42 +28,46 @@ function RequestRestaurant() {
         let previousBought = []
         for (let i = 0; i < res.data.length; i++) {
           if (allMenugenId.includes(res.data[i].menu_id) && res.data[i].status === 'pending') {
+            menuBought.push(res.data[i])
             console.log(res.data[i])
-            let userId = res.data[i].user_id
-            axios.get(`/menu/1/${res.data[i].menu_id}`).then(res => {
-              let newRes = {}
-              newRes = { ...res.data }
-              newRes.orderedBy = userId
-              // console.log(newRes)
-              menuBought.push(newRes)
-              setMenuPost([...menuBought])
-            })
+            setMenuPost([...menuBought])
           }
           else if (allMenugenId.includes(res.data[i].menu_id)) {
-            let userId = res.data[i].user_id
-            axios.get(`/menu/1/${res.data[i].menu_id}`).then(res => {
-              let previousRes = {}
-              previousRes = { ...res.data }
-              previousRes.orderedBy = userId
-              // console.log(newRes)
-              previousBought.push(previousRes)
-              setPreviousMenu([...previousBought])
-            })
+            previousBought.push(res.data[i])
+            setPreviousMenu([...previousBought])
           }
 
         }
+        axios.get(`/ordered-history/${localStorage.getItem("id")}`).then(res => {
+          setDoneRequests(res.data)
+        })
       })
     })
   }, [])
 
-  const acceptRequest = (userId, menuId) => {
-    axios.put(`/order/${userId}/${menuId}`, { status: "completed" }).then(res => window.location.reload())
+  const acceptRequest = (userId, menuId, index) => {
+    axios.put(`/order/${userId}/${menuId}`, { status: "completed" }).then(res => {
+      menuPost[index].status = "completed"
+      axios.post(`/purchase-history/${userId}`, menuPost[index]).then(res => {
+        // my id
+        axios.post(`/ordered-history/${localStorage.getItem("id")}`, menuPost[index]).then(res => {
+          window.location.reload()
+        })
+      })
+    })
   }
-  const declineRequest = (userId, menuId) => {
-    axios.put(`/order/${userId}/${menuId}`, { status: "rejected" }).then(res => window.location.reload())
+  const declineRequest = (userId, menuId, index) => {
+    axios.put(`/order/${userId}/${menuId}`, { status: "rejected" }).then(res => {
+      menuPost[index].status = "rejected"
+      axios.post(`/purchase-history/${userId}`, menuPost[index]).then(res => {
+        console.log(res)
+        axios.post(`/ordered-history/${localStorage.getItem("id")}`, menuPost[index]).then(res => console.log(res))
+        window.location.reload()
+      })
+    })
   }
-  const deleteOrder = (userId, menuId) => {
-    axios.delete(`/order/${userId}/${menuId}`).then(() => window.location.reload())
+  const deleteOrder = (customerId, menuId) => {
+    axios.delete(`/order/${customerId}/${menuId}`).then(() => window.location.reload())
   }
 
   return (
@@ -73,16 +78,16 @@ function RequestRestaurant() {
           <h2 style={{ margin: '30px' }}>Current Orders</h2>
           <ul style={{ marginTop: '40px' }}>
             {menuPost.map((el, index) => {
-              return (<li key={el.id}>
+              return (<li key={el.createdAt}>
                 <div className="order">
                   <img src={el.menu_pic} />
                   <div>{el.title}</div>
                   <div>${el.price}</div>
-                  <div>{el.orderedBy}</div>
+                  <div>{el.quantity}</div>
                   <div>{el.status}</div>
                   <div>
-                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.orderedBy, el.id)}> ACCEPT</Button>
-                    <Button onClick={() => declineRequest(el.orderedBy, el.id)}>DECLINE</Button>
+                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.menu_id, index)}> ACCEPT</Button>
+                    <Button onClick={() => declineRequest(el.user_id, el.menu_id, index)}>DECLINE</Button>
                   </div>
                   {/* <div>
                     <CheckCircleOutlined />
@@ -95,7 +100,7 @@ function RequestRestaurant() {
         <div className="orderBox">
           <h2 style={{ margin: '30px' }}>Resolved Orders</h2>
           <ul style={{ marginTop: '40px' }}>
-            {previousMenu.map((el, index) => {
+            {doneRequests.map((el, index) => {
               return (<li key={el.id} >
                 <div className="order" style={{ background: 'grey' }}>
                   <img src={el.menu_pic} />

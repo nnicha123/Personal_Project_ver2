@@ -5,10 +5,10 @@ const passport = require('passport')
 
 const authentication = passport.authenticate("jwt", { session: false })
 
-router.get('/', authentication, purchaseHistoryController.getPurchaseHistoryUser)
+router.get('/:userId', authentication, purchaseHistoryController.getPurchaseHistoryUser)
 // router.get('/', authentication, purchaseHistoryController.getPurchaseHistory)
-router.post('/', authentication, purchaseHistoryController.addPurchaseHistory)
-router.put('/:id', authentication, purchaseHistoryController.updatePurchaseHistory)
-router.delete('/:id', authentication, purchaseHistoryController.deletePurchaseHistory)
+router.post('/:userId', authentication, purchaseHistoryController.addPurchaseHistory)
+router.put('/:userId/:id', authentication, purchaseHistoryController.updatePurchaseHistory)
+router.delete('/:userId/:id', authentication, purchaseHistoryController.deletePurchaseHistory)
 
 module.exports = router

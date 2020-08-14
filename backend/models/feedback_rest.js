@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     no_of_stars: {
       type: DataTypes.FLOAT
+    },
+    reported: {
+      type: DataTypes.BOOLEAN
     }
   })
 

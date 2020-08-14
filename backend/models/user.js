@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   })
   User.associate = models => {
     User.hasMany(models.purchase_history, { foreignKey: 'user_id' })
+    User.hasMany(models.orderedhistory_rest, { foreignKey: 'user_id' })
     User.hasMany(models.restaurant, { foreignKey: 'user_id' })
     User.belongsToMany(models.restaurant, { through: models.feedback_rest, as: 'User_Comment', foreignKey: 'user_id' })
     User.belongsToMany(models.menu, { through: models.feedback_menu, as: 'User_menuComment', foreignKey: 'user_id' })
