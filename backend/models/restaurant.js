@@ -31,9 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   })
   Restaurant.associate = models => {
     Restaurant.hasMany(models.bank_detail, { foreignKey: 'restaurant_id' })
+    Restaurant.hasMany(models.booking_criteria, { foreignKey: 'restaurant_id' })
     Restaurant.hasMany(models.menu, { foreignKey: 'restaurant_id' })
     Restaurant.belongsTo(models.user, { foreignKey: 'user_id' })
     Restaurant.belongsToMany(models.user, { through: models.feedback_rest, as: 'Restaurant_getComment', foreignKey: 'restaurant_id' })
+    Restaurant.belongsToMany(models.user, { through: models.book, as: 'Booking_Res', foreignKey: 'restaurant_id' })
   }
 
   return Restaurant;

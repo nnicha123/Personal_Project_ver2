@@ -14,6 +14,8 @@ const purchaseHistoryRoute = require('./routes/purchase_history')
 const restaurantRoute = require('./routes/restaurant')
 const userRoute = require('./routes/user')
 const orderedHistoryResRoute = require('./routes/orderedhistory_res')
+const bookRoute = require('./routes/book')
+const bookingCriteriaRoute = require('./routes/booking_criteria')
 
 require('./config/passport/passport')
 
@@ -30,6 +32,8 @@ app.use('/purchase-history', purchaseHistoryRoute)
 app.use('/restaurant', restaurantRoute)
 app.use('/user', userRoute)
 app.use('/ordered-history', orderedHistoryResRoute)
+app.use('/book', bookRoute)
+app.use('/booking-criteria', bookingCriteriaRoute)
 
 db.sequelize.sync().then(() => {
   app.listen(process.env.PORT, () => console.log('Listening on port', process.env.PORT));

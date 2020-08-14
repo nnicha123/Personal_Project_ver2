@@ -36,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models.restaurant, { through: models.feedback_rest, as: 'User_Comment', foreignKey: 'user_id' })
     User.belongsToMany(models.menu, { through: models.feedback_menu, as: 'User_menuComment', foreignKey: 'user_id' })
     User.belongsToMany(models.menu, { through: models.order, as: 'User_orders', foreignKey: 'user_id' })
+    User.belongsToMany(models.restaurant, { through: models.book, as: 'Book_User', foreignKey: 'user_id' })
   }
 
   return User;
