@@ -24,6 +24,13 @@ function RestaurantUserView(props) {
       })
     }
   }
+  const buyItem = (index) => {
+    console.log(menus[index])
+    let values = menus[index]
+    values["status"] = "pending"
+    values["user_id"] = localStorage.getItem("id")
+    axios.post(`/order/${user_id}/${menus[index].id}`, values).then(res => console.log(res))
+  }
 
   useEffect(() => {
     axios.get(`/restaurant/${user_id}/${restaurant_id}`).then(res => {
@@ -40,7 +47,7 @@ function RestaurantUserView(props) {
   }, [])
   return (
     <div>
-      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"8"} /> : <RestaurantNav selected={"8"} />}
+      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"8"} /> : <RestaurantNav selected={"2"} />}
       <div className="outerProfile">
         {/* {restaurant.name} */}
         <div className="usermenuBanner">
@@ -69,7 +76,7 @@ function RestaurantUserView(props) {
             <div style={{ marginBottom: '15px' }}>
               <span>Rate This Restaurant :
             <select class="ratingInput" name="rating" onChange={(e) => setRating(e.target.value)}>
-                  <option value="">-- Rate --</option>
+                  {/* <option value="">-- Rate --</option> */}
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -90,8 +97,8 @@ function RestaurantUserView(props) {
 
         </div>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '40px' }}>
-        {menus.map(el => {
+      <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '80px' }}>
+        {menus.map((el, index) => {
           return (
             <div key={el.id} className="usermenuRestaurants">
               <div className="usermenuImageDiv">
@@ -102,7 +109,7 @@ function RestaurantUserView(props) {
                   <div>{el.title}</div>
                   <div>Rating : {el.average_rating}/5</div>
                 </div>
-                <Button style={{ width: '70px' }}>View</Button>
+                <Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button>
               </div>
 
             </div>

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import '../css/MyRestaurantProfile.css'
-import { Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
 import axios from '../../config/axios'
 import MenuRestaurant from './MenuRestaurant'
 import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
+import { PlusCircleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Checkbox } from 'antd';
+import TextArea from 'antd/lib/input/TextArea';
+
 
 function MyRestaurantProfile() {
   const [user_id, setUserId] = useState(localStorage.getItem("id"))
@@ -16,6 +19,21 @@ function MyRestaurantProfile() {
   const [feedbacks, setFeedbacks] = useState([])
   const [changeprofileCover, setChangeCover] = useState(false)
   const [newCover, setNewCover] = useState('')
+  const [addMenuForm, setAddMenuForm] = useState(false)
+
+  const onFinish = values => {
+    console.log(values)
+    // window.location.replace('/home')
+    // values["promotion"] = false
+    values["average_rating"] = 0
+    axios.post(`/menu/${localStorage.getItem("resId")}`, values).then(res => {
+      window.location.reload()
+    })
+  };
+
+  const addMenu = () => {
+    setAddMenuForm(true)
+  }
 
   useEffect(() => {
     axios.get(`/restaurant/${user_id}/${restaurant_id}`).then(res => {
@@ -103,6 +121,88 @@ function MyRestaurantProfile() {
             </div>
           )
         })}
+        {!addMenuForm && <div className="addMenuRes" onClick={addMenu}>
+          <PlusCircleOutlined />
+        </div>}
+        {addMenuForm && <div className="addMenuResForm">
+          <Form style={{ margin: '15px' }}
+            name="normal_login"
+            className="login-form"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+          >
+            <Form.Item style={{ marginBottom: '5px' }}
+              name="title"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your title!',
+                },
+              ]}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Title" />
+            </Form.Item>
+            <Form.Item style={{ marginBottom: '5px' }}
+              name="description"
+              rules={[
+                {
+                  required: false
+                },
+              ]}
+            >
+              <TextArea
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="Description"
+              />
+            </Form.Item>
+            <Form.Item style={{ marginBottom: '5px' }}
+              name="menu_pic"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your title!',
+                },
+              ]}
+            >
+              <Input placeholder="Menu Picture" />
+            </Form.Item>
+            <div style={{ display: 'flex' }}>
+              <Form.Item style={{ marginBottom: '5px' }}
+                name="category"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your category!',
+                  },
+                ]}
+              >
+                <Input placeholder="Category" />
+              </Form.Item>
+              <Form.Item style={{ marginBottom: '5px' }}
+                name="price"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input your title!',
+                  },
+                ]}
+              >
+                <Input type="number" placeholder="Price" />
+              </Form.Item>
+            </div>
+            <Form.Item style={{ marginBottom: '10px' }}
+              name="promotion"
+            >
+              <Input type="boolean" placeholder="Promotion? (true/false)" />
+            </Form.Item>
+            <div style={{ display: 'flex', justifyContent: 'center' }} >
+              <Button style={{ marginRight: 0 }} type="primary" htmlType="submit" className="login-form-button">Add Menu</Button>
+              <Button style={{ marginLeft: 0 }} onClick={() => setAddMenuForm(false)}>Cancel</Button>
+            </div>
+          </Form>
+        </div>}
       </div>
     </div>
   )

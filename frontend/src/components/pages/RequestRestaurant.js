@@ -15,28 +15,24 @@ function RequestRestaurant() {
       let allMenugenId = []
       for (let i = 0; i < res.data.length; i++) {
         axios.get(`/menu/${res.data[i].id}`).then(res => {
-          // allMenus.push(res.data)
-          // console.log(allMenus)
           for (let i = 0; i < res.data.length; i++) {
-            // console.log(res.data[i])
             allMenugenId.push(res.data[i].id)
-            // console.log(allMenugenId)
           }
         })
       }
       setAllMenuIds(allMenugenId)
       axios.get('/order/all').then(res => {
-        // allMenugenId.forEach(el => console.log(el))
-        console.log(res)
         let menuBought = []
         for (let i = 0; i < res.data.length; i++) {
-          // console.log(res.data[i].menu_id)
           if (allMenugenId.includes(res.data[i].menu_id)) {
-            // console.log(res.data[i].menu_id)
+            // console.log(res.data[i])
+            let userId = res.data[i].user_id
             axios.get(`/menu/1/${res.data[i].menu_id}`).then(res => {
-              menuBought.push(res.data)
-              // console.log(menuBought)
-              // 
+              let newRes = {}
+              newRes = { ...res.data }
+              newRes.orderedBy = userId
+              console.log(newRes)
+              menuBought.push(newRes)
               setMenuPost([...menuBought])
             })
           }
@@ -45,11 +41,11 @@ function RequestRestaurant() {
     })
   }, [])
 
-  const acceptRequest = (menuId, index) => {
-    axios.put(`/order/${menuId}`, { status: "completed" }).then(res => { console.log(res.data) })
+  const acceptRequest = (userId, menuId) => {
+    axios.put(`/order/${userId}/${menuId}`, { status: "completed" }).then(res => { console.log(res.data) })
   }
-  const declineRequest = (menuId) => {
-    axios.put(`/order/${menuId}`, { status: "rejected" }).then(res => console.log(res.data))
+  const declineRequest = (userId, menuId) => {
+    axios.put(`/order/${userId}/${menuId}`, { status: "rejected" }).then(res => console.log(res.data))
   }
 
   return (
@@ -64,11 +60,11 @@ function RequestRestaurant() {
                   <img src={el.menu_pic} />
                   <div>{el.title}</div>
                   <div>${el.price}</div>
-                  <div>{el.createdAt}</div>
+                  <div>{el.orderedBy}</div>
                   <div>{el.status}</div>
                   <div>
-                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.id, index)}> ACCEPT</Button>
-                    <Button onClick={() => declineRequest(el.id)}>DECLINE</Button>
+                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.orderedBy, el.id)}> ACCEPT</Button>
+                    <Button onClick={() => declineRequest(el.orderedBy, el.id)}>DECLINE</Button>
                   </div>
                   {/* <div>
                     <CheckCircleOutlined />

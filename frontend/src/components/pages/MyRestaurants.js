@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import RestaurantNav from './Navigation/RestaurantNav'
 import axios from '../../config/axios'
 import '../css/MyRestaurant.css'
-import MyRestaurantProfile from './MyRestaurantProfile'
+import { PlusCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -14,6 +14,7 @@ function MyRestaurants() {
   const [changePic, setChangePic] = useState(false)
   const [newPic, setNewPic] = useState('')
   const [firstName, setFirstName] = useState('User')
+  const [addRestaurantForm, setAddRestaurantForm] = useState(false)
 
   const changeProfilePicHandler = (index) => {
     axios.put(`/restaurant/${restaurants[index].id}`, { profile_pic: newPic }).then(res => console.log(res))
@@ -57,11 +58,13 @@ function MyRestaurants() {
                   See Restaurant
               </Button>
               </div>
-
             </div>
-
           )
         })}
+        {!addRestaurantForm && <div className="addMenuRes" onClick={() => window.location.replace('/become-owner')}>
+          <PlusCircleOutlined />
+        </div>}
+
       </div>
     </div>
   )

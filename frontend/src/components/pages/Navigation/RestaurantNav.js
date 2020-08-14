@@ -39,7 +39,10 @@ function RestaurantNav(props) {
         <Menu.Item key="8">
           <Link to="/your-orders">Your Orders</Link>
         </Menu.Item>
-        <Menu.Item key="9" onClick={logOut}>
+        <Menu.Item key="9">
+          <Link to="/become-owner">Add Restaurant</Link>
+        </Menu.Item>
+        <Menu.Item key="10" onClick={logOut}>
           Logout
         </Menu.Item>
       </Menu>

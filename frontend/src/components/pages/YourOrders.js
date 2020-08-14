@@ -10,6 +10,8 @@ import RestaurantNav from './Navigation/RestaurantNav'
 
 function YourOrders() {
 
+  const [newQuantity, setNewQuantity] = useState(1)
+
   useEffect(() => {
     axios.get('/order').then(res => {
       console.log(res.data)
@@ -17,9 +19,12 @@ function YourOrders() {
     })
   }, [])
   const cancelBuy = (menuId) => {
-    axios.delete(`/order/${menuId}`).then(res => {
+    axios.delete(`/order/${localStorage.getItem("id")}/${menuId}`).then(res => {
       window.location.reload()
     })
+  }
+  const updateQuantity = (menuId) => {
+    axios.put(`/order/${localStorage.getItem("id")}/${menuId}`, { quantity: newQuantity }).then(res => console.log(res))
   }
   const [yourOrders, setYourOrders] = useState([])
   return (
@@ -28,15 +33,30 @@ function YourOrders() {
       <div className="orderOuter">
         <div className="orderBox">
           <ul style={{ marginTop: '40px' }}>
-            {yourOrders.map(el => {
+            {yourOrders.map((el, index) => {
               return (<li key={el.id}>
                 <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
                   <img src={el.menu_pic} />
                   <div>{el.title}</div>
-                  <div>${el.price}</div>
-                  <div>{el.createdAt}</div>
+                  <div>{el.quantity} x ${el.price}</div>
+                  <div>
+                    <div>
+                      <select name="Quantity" onChange={(e) => setNewQuantity(e.target.value)}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+
+                  </div>
                   <div>{el.status}</div>
-                  <Button onClick={() => cancelBuy(el.menu_id)}>CANCEL</Button>
+                  <div>
+                    <Button type="primary" style={{ margin: 0 }} onClick={() => updateQuantity(el.menu_id)}>Update</Button>
+                    <Button onClick={() => cancelBuy(el.menu_id)}>Cancel</Button>
+
+                  </div>
                 </div>
               </li>)
             })}

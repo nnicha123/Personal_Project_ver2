@@ -36,7 +36,7 @@ function MenuRestaurant(props) {
 
   return (
     <div>
-      <RestaurantNav selected={"7"} />
+      <RestaurantNav selected={"9"} />
       <div className="myMenus">
         {menu.map((el, index) => {
           return (

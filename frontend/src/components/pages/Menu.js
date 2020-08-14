@@ -5,6 +5,7 @@ import LocalStorageService from '../../services/LocalStorageService'
 import axios from '../../config/axios'
 import '../css/Menu.css'
 import { Button } from 'antd'
+import { StarFilled } from '@ant-design/icons';
 
 function Menu() {
   const buyItem = (index) => {
@@ -37,6 +38,7 @@ function Menu() {
                 <div className="menuImageDiv">
                   <img src={el.menu_pic} />
                 </div>
+                {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
                 <div className="menucontentDiv">
                   <div>
                     <div>{el.title}</div>

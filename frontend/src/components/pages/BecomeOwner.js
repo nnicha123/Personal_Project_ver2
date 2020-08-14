@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import UserNav from './Navigation/UserNav'
+import RestaurantNav from './Navigation/RestaurantNav'
 import 'antd/dist/antd.css'
 import { Layout, notification } from 'antd';
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined, SmileOutlined, PhoneOutlined, PushpinOutlined, ShopOutlined } from '@ant-design/icons';
+import { LockOutlined, PhoneOutlined, ShopOutlined } from '@ant-design/icons';
 import '../css/BecomeOwner.css'
 import TextArea from 'antd/lib/input/TextArea';
 import axios from '../../config/axios'
@@ -30,13 +31,9 @@ const registerRestaurant = values => {
 
 function BecomeOwner() {
 
-  useEffect(() => {
-    // axios.get('/restaurant').then(res => console.log(res))
-  }, [])
-
   return (
     <div>
-      <UserNav selected={"7"} />
+      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"7"} /> : <RestaurantNav selected={"9"} />}
       <Content className="content">
         <div className="register" style={{ textAlign: 'center' }}>
           <h3>Register Restaurant</h3>

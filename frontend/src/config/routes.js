@@ -122,6 +122,7 @@ export default {
     components.menuRes,
     components.contactUs,
     components.yourOrders,
-    components.myRestaurantProfile
+    components.myRestaurantProfile,
+    components.becomeOwner
   ]
 }

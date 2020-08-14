@@ -20,6 +20,7 @@
   margin: 10px;
   overflow: hidden;
   text-align: left;
+  position: relative;
 }
 .promotionImageDiv {
   width: 100%;
