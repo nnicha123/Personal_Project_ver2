@@ -16,6 +16,7 @@ function RestaurantUserView(props) {
   const [comment, setComment] = useState('')
   const [rating, setRating] = useState(0)
   const [feedbacks, setFeedbacks] = useState([])
+  const [avg_rating, setAvgRating] = useState(0)
 
   const addRestaurantFeedback = () => {
     if (comment && rating != 0) {
@@ -41,6 +42,13 @@ function RestaurantUserView(props) {
         axios.get(`/feedback-rest/${restaurant_id}`).then(res => {
           console.log(res.data)
           setFeedbacks(res.data)
+          let averageRating = 0
+          let sum = 0
+          for (let i = 0; i < res.data.length; i++) {
+            sum += Number(res.data[i].no_of_stars)
+          }
+          averageRating = sum / res.data.length
+          setAvgRating(averageRating)
         })
       })
     })
@@ -62,7 +70,7 @@ function RestaurantUserView(props) {
           </div>
           <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
           <div style={{ margin: '10px', marginBottom: '30px' }}>
-            <span>CURRENT RATING : {restaurant.average_rating}/5</span>
+            <h3>Average Rating : {avg_rating}/5</h3>
           </div>
           {
             feedbacks.map(el => {
@@ -86,7 +94,7 @@ function RestaurantUserView(props) {
               </span>
             </div>
             Add Comments
-            <textarea type="text" style={{ width: '100%', marginTop: '10px' }} value={comment} onChange={(e) => setComment(e.target.value)} />
+            <textarea className="textArea" type="text" style={{ width: '100%', marginTop: '10px' }} value={comment} onChange={(e) => setComment(e.target.value)} />
             <div>
               <Button type="primary" style={{ margin: 0 }} onClick={() => addRestaurantFeedback()}>Add Feedback</Button>
               <Button>

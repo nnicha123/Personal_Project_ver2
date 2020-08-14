@@ -12,7 +12,7 @@ const addFeedbackRest = async (req, res) => {
 const updateFeedbackRest = async (req, res) => {
   const targetId = req.params.restaurant_id
   const { comment, no_of_stars, reported } = req.body
-  const foundTarget = await db.feedback_rest.findOne({ where: { restaurant_id: targetId, user_id: req.user.id } })
+  const foundTarget = await db.feedback_rest.findOne({ where: { restaurant_id: targetId, user_id: req.params.user_id } })
   if (!foundTarget) {
     res.status(404).send({ message: 'Target not found' })
   } else {

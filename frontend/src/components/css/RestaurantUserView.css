@@ -10,6 +10,10 @@
   margin-left: 80px;
   margin-top: 40px;
 }
+.textArea {
+  border: none;
+  background: rgb(235, 235, 235);
+}
 
 .usermymenuRestaurants {
   min-height: 50vh;

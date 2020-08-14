@@ -20,6 +20,7 @@ function MyRestaurantProfile() {
   const [changeprofileCover, setChangeCover] = useState(false)
   const [newCover, setNewCover] = useState('')
   const [addMenuForm, setAddMenuForm] = useState(false)
+  const [avg_rating, setAvgRating] = useState(0)
 
   const onFinish = values => {
     console.log(values)
@@ -44,6 +45,13 @@ function MyRestaurantProfile() {
         axios.get(`/feedback-rest/${restaurant_id}`).then(res => {
           console.log(res.data)
           setFeedbacks(res.data)
+          let averageRating = 0
+          let sum = 0
+          for (let i = 0; i < res.data.length; i++) {
+            sum += Number(res.data[i].no_of_stars)
+          }
+          averageRating = sum / res.data.length
+          setAvgRating(averageRating)
         })
       })
     })
@@ -51,6 +59,11 @@ function MyRestaurantProfile() {
 
   const deleteComment = (targetId) => {
     axios.delete(`/feedback-rest/${restaurant_id}/${targetId}`).then(res => {
+      window.location.reload()
+    })
+  }
+  const reportComment = (targetId) => {
+    axios.put(`/feedback-rest/${restaurant_id}/${targetId}`, { reported: true }).then(res => {
       window.location.reload()
     })
   }
@@ -80,19 +93,22 @@ function MyRestaurantProfile() {
           </div>
           <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
           <div style={{ margin: '10px', marginBottom: '30px' }}>
-            <span>CURRENT RATING : {restaurant.average_rating}/5</span>
+            <h3>Average Rating : {avg_rating}/5</h3>
           </div>
           <h3 style={{ margin: '10px' }}>Comments</h3>
           {
             feedbacks.length > 0 && feedbacks.map((el, index) => {
               return (<div className="descriptionOwner" key={el.createdAt}>
-                <div className="commentTop">
+                {!el.reported && <div className="commentTop">
                   <div>{el.comment}</div>
                   <div>{el.no_of_stars}/5</div>
-                </div>
+                </div>}
+                {el.reported && <div className="commentTop">
+                  <i>This comment is inappropriate</i>
+                </div>}
                 <div className="deleteReport">
                   <Button type="primary" onClick={() => deleteComment(el.user_id)}>Delete</Button>
-                  <Button type="dashed">Report</Button>
+                  <Button type="dashed" onClick={() => reportComment(el.user_id)}>Report</Button>
                 </div>
               </div>)
             })
