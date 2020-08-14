@@ -75,9 +75,17 @@ function RestaurantUserView(props) {
           {
             feedbacks.map(el => {
               return (<div className="descriptionSmall">
-                <div>{el.comment}</div>
-                <div>{el.no_of_stars}/5</div>
+                {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
+                  <div>{el.comment}</div>
+                  <div>{el.no_of_stars}/5</div>
+                </div>}
+                {
+                  el.reported && <div className="commentTop">
+                    <i>This comment is inappropriate</i>
+                  </div>
+                }
               </div>)
+
             })
           }
           <div className="description">
@@ -124,7 +132,7 @@ function RestaurantUserView(props) {
           )
         })}
       </div>
-    </div>
+    </div >
   )
 }
 

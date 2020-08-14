@@ -3,8 +3,6 @@ import UserNav from './Navigation/UserNav'
 import '../css/BookNow.css'
 import { Button, Calendar, DatePicker, Space } from 'antd'
 
-
-
 function BookNow() {
   const onChange = (date, dateString) => {
     console.log(date, dateString);
