@@ -123,6 +123,7 @@ export default {
     components.contactUs,
     components.yourOrders,
     components.myRestaurantProfile,
-    components.becomeOwner
+    components.becomeOwner,
+    components.bookNow
   ]
 }

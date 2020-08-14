@@ -3,6 +3,8 @@ import UserNav from './Navigation/UserNav'
 import '../css/BookNow.css'
 import { Button, Calendar, DatePicker, Space } from 'antd'
 import MasterForm from './BookNow/MasterForm'
+import LocalStorageService from '../../services/LocalStorageService'
+import RestaurantNav from './Navigation/RestaurantNav'
 
 function BookNow() {
   const onChange = (date, dateString) => {
@@ -13,7 +15,7 @@ function BookNow() {
   const [date, setDate] = useState('')
   return (
     <div>
-      <UserNav selected={"8"} />
+      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"8"} /> : <RestaurantNav selected={"10"} />}
       <MasterForm />
     </div>
   )

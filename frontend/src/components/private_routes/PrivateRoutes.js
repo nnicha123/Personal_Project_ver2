@@ -2,6 +2,7 @@ import React from 'react';
 import routeConfig from '../../config/routes';
 import { Switch, Route } from 'react-router-dom';
 import NotFoundPage from "../pages/NotFound";
+import Login from '../pages/Login'
 
 function PrivateRoutes(props) {
   const role = props.role || "guest";

@@ -3,7 +3,7 @@ import React from 'react'
 function NotFound() {
   return (
     <div>
-      NOT FOUND
+      YOU HAVE NO PERMISSION TO COME INTO THIS PAGE
     </div>
   )
 }
