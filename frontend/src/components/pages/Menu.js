@@ -30,8 +30,8 @@ function Menu() {
         <img src="restaurants/fishships2.jpg" />
       </div>
       <div className="topResOuter">
-        <h3 style={{ marginTop: '20px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h3>
-        <div className="mymenuRestaurants">
+        <h2 style={{ marginTop: '40px', marginLeft: '50px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
+        <div className="mymenuRestaurants" style={{ margin: '40px', marginTop: '20px' }}>
           {selectedMenu.map((el, index) => {
             return (
               <div key={el.id} className="menuRestaurants">

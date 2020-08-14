@@ -30,9 +30,9 @@ function RestaurantNav(props) {
         <Menu.Item key="5">
           <Link to="/request-restaurant">Your Requests</Link>
         </Menu.Item>
-        <Menu.Item key="6">
+        {/* <Menu.Item key="6">
           <Link to="/contact-us">Contact Us</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="7">
           <Link to="/my-restaurants">My Restaurants</Link>
         </Menu.Item>
@@ -42,10 +42,16 @@ function RestaurantNav(props) {
         <Menu.Item key="9">
           <Link to="/become-owner">Add Restaurant</Link>
         </Menu.Item>
-        <Menu.Item key="10">
+        {/* <Menu.Item key="10">
           <Link to="/book-now">Book Now</Link>
+        </Menu.Item> */}
+        <Menu.Item key="11">
+          <Link to="/your-bookings">Your Bookings</Link>
         </Menu.Item>
-        <Menu.Item key="11" onClick={logOut}>
+        <Menu.Item key="12">
+          <Link to="/booking-requests">Booking Requests</Link>
+        </Menu.Item>
+        <Menu.Item key="13" onClick={logOut}>
           Logout
         </Menu.Item>
       </Menu>

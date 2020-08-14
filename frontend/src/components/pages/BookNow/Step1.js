@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input } from 'antd'
+import { Form, Input, DatePicker } from 'antd'
 import FormItemLabel from 'antd/lib/form/FormItemLabel';
 
 export default function Step1(props) {
@@ -21,6 +21,7 @@ export default function Step1(props) {
                 value={props.date}
                 onChange={props.handleChange}
             />
+            {/* <DatePicker onChange={props.handleChange} value={props.date} style={{ width: '400px' }} /> */}
             <br />
             <h3 style={{ marginTop: '20px' }}>Then select time and click next!</h3>
             <Input style={{ width: '400px' }}

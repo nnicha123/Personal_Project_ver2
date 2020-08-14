@@ -7,15 +7,9 @@ import LocalStorageService from '../../services/LocalStorageService'
 import RestaurantNav from './Navigation/RestaurantNav'
 
 function BookNow() {
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-    setDate(dateString)
-  }
-
-  const [date, setDate] = useState('')
   return (
     <div>
-      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"8"} /> : <RestaurantNav selected={"10"} />}
+      {LocalStorageService.getUserRole() === 'user' ? <UserNav /> : <RestaurantNav />}
       <MasterForm />
     </div>
   )

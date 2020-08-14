@@ -8,16 +8,16 @@ export default function Step1(props) {
     }
     return (
         <Form.Item className="form-group">
-            <FormItemLabel htmlFor="username">Username</FormItemLabel>
-            <h3>Please select the dine category, we have 2 choices for you, buffet or normal dining</h3>
+            <FormItemLabel htmlFor="restaurantName">Restaurant Name</FormItemLabel>
+            <h3>Please confirm restaurant name</h3>
             <p>You will enjoy either we promise!</p>
             <Input style={{ width: '400px' }}
                 className="form-control"
-                id="username"
-                name="username"
+                id="restaurantName"
+                name="restaurantName"
                 type="text"
                 placeholder="Enter dine type"
-                value={props.username}
+                value={props.restaurantName}
                 onChange={props.handleChange}
             />
         </Form.Item>

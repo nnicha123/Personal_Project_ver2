@@ -32,12 +32,12 @@ function HomePage() {
         <img src="restaurants/fishships3.jpg" />
       </div>
       <div className="topResOuter">
-        <h3 style={{ margin: '20px', marginBottom: '5px' }}>Dine in at our Top Restaurants!</h3>
-        <h3 style={{ marginLeft: '20px', marginTop: '0px' }}>Not free to dine in? Not a problem! Checkout our takeaways!
-        <span><Button type="primary"><Link to="/menu">Menu</Link></Button></span>
+        <h2 style={{ marginTop: '40px', marginLeft: '50px', marginBottom: '5px' }}>Dine in at our Top Restaurants!</h2>
+        <h3 style={{ marginLeft: '50px', marginTop: '0px', marginBottom: '5px' }}>Not free to dine in? Not a problem! Checkout our takeaways!
+        <span> <Button type="primary"><Link to="/menu">Menu</Link></Button></span>
         </h3>
 
-        <div className="myhomeRestaurants">
+        <div className="myhomeRestaurants" style={{ margin: '40px', marginTop: '20px' }}>
           {selectedRes.map((el, index) => {
             return (
               <div key={el.id} className="homeRestaurants">

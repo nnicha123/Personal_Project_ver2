@@ -3,14 +3,15 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import { Button } from 'antd'
+import axios from '../../../config/axios'
 
 class MasterForm extends React.Component {
     state = {
         currentStep: 1,
         date: '',
         time: '',
-        username: '',
-        password: ''
+        restaurantName: '',
+        paidTotal: 0
     }
     handleChange = event => {
         const { name, value } = event.target
@@ -20,12 +21,8 @@ class MasterForm extends React.Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        const { date, time, username, password } = this.state
-        alert(`Your registration detail:\n
-        Date: ${date}\n
-        Time:${time}\n
-        Username:${username}\n
-        Password:${password}`)
+        const { date, time, restaurantName, paidTotal } = this.state
+        axios.post(`/book/${localStorage.getItem("id")}/${localStorage.getItem("resId")}`, { date, time, restaurantName, paidTotal }).then(res => console.log(res))
     }
     _next = () => {
         let currentStep = this.state.currentStep
@@ -67,6 +64,9 @@ class MasterForm extends React.Component {
         }
         return null
     }
+    componentDidMount = () => {
+        axios.get(`/restaurant/1/${localStorage.getItem('resId')}`).then(res => { this.setState({ restaurantName: res.data.name }) })
+    }
     render() {
         return (
             <div className="bookingOuter">
@@ -82,11 +82,11 @@ class MasterForm extends React.Component {
                         <Step2
                             currentStep={this.state.currentStep}
                             handleChange={this.handleChange}
-                            username={this.state.username} />
+                            restaurantName={this.state.restaurantName} />
                         <Step3
                             currentStep={this.state.currentStep}
                             handleChange={this.handleChange}
-                            password={this.state.password} />
+                            paidTotal={this.state.paidTotal} />
                         <div className="navigateButtons">
                             {this.previousButton()}
                             {this.nextButton()}

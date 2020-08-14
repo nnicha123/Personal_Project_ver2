@@ -22,8 +22,8 @@ function Promotions() {
         <img src="restaurants/fishchips.jpg" />
       </div>
       <div className="topResOuter">
-        <h3 style={{ margin: '20px' }}>Today's Promotions!!!</h3>
-        <div className="mypromotionRestaurants">
+        <h2 style={{ marginTop: '40px', marginLeft: '50px' }}>Today's Promotions!!!</h2>
+        <div className="mypromotionRestaurants" style={{ margin: '40px', marginTop: '20px' }}>
           {selectedProMenu.map(el => {
             return (
               <div key={el.id} className="promotionRestaurants">

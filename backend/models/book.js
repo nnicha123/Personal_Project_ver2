@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     paidTotal: {
       type: DataTypes.FLOAT
+    },
+    restaurantName: {
+      type: DataTypes.STRING(200)
     }
   })
   return Book;

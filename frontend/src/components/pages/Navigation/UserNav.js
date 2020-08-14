@@ -30,16 +30,19 @@ function GuestNav(props) {
         <Menu.Item key="5">
           <Link to="/your-orders">Your Orders</Link>
         </Menu.Item>
-        <Menu.Item key="6">
+        {/* <Menu.Item key="6">
           <Link to="/contact-us">Contact Us</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="7">
           <Link to="/become-owner">Become Owner</Link>
         </Menu.Item>
-        <Menu.Item key="8">
+        {/* <Menu.Item key="8">
           <Link to="/book-now">Book Now</Link>
+        </Menu.Item> */}
+        <Menu.Item key="9">
+          <Link to="/your-bookings">Your Bookings</Link>
         </Menu.Item>
-        <Menu.Item key="9" onClick={logOut}>
+        <Menu.Item key="10" onClick={logOut}>
           Logout
         </Menu.Item>
       </Menu>
