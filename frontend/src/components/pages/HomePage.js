@@ -47,9 +47,10 @@ function HomePage() {
                 <div className="contentDiv">
                   <div>
                     <div>{el.name}</div>
-                    <div>Rating : {el.average_rating}/5</div>
                   </div>
-                  <Button style={{ width: '70px' }} onClick={() => { view(index) }}>View</Button>
+                </div>
+                <div style={{ width: '100%', textAlign: 'right', padding: '5px' }}>
+                  <Button className="buttonView" onClick={() => { view(index) }}>View</Button>
                 </div>
               </div>
 

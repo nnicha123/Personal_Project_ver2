@@ -19,12 +19,14 @@
 }
 .homeRestaurants {
   width: 200px;
-  height: 250px;
+  height: 280px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   margin: 10px;
   overflow: hidden;
   text-align: left;
+  position: relative;
 }
+
 .homeImageDiv {
   width: 100%;
   height: 70%;

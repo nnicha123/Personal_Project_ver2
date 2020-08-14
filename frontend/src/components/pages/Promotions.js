@@ -33,7 +33,7 @@ function Promotions() {
                 <div className="promotioncontentDiv">
                   <div>
                     <div>{el.title}</div>
-                    <div>Rating : {el.average_rating}/5</div>
+                    {/* <div>Rating : {el.average_rating}/5</div> */}
                   </div>
                   <Button style={{ width: '70px' }}>View</Button>
                   <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />

@@ -40,13 +40,9 @@ function Menu() {
                 </div>
                 {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
                 <div className="menucontentDiv">
-                  <div>
-                    <div>{el.title}</div>
-                    <div>Rating : {el.average_rating}/5</div>
-                  </div>
-                  <Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button>
+                  <div>{el.title}</div>
+                  <Button class="buyButton" onClick={() => { buyItem(index) }}>Buy</Button>
                 </div>
-
               </div>
 
             )

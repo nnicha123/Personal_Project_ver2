@@ -17,7 +17,7 @@ function MyRestaurants() {
   const [addRestaurantForm, setAddRestaurantForm] = useState(false)
 
   const changeProfilePicHandler = (index) => {
-    axios.put(`/restaurant/${restaurants[index].id}`, { profile_pic: newPic }).then(res => console.log(res))
+    axios.put(`/restaurant/${restaurants[index].id}`, { profile_pic: newPic }).then(res => window.location.reload())
   }
 
   const showRestaurant = (index) => {

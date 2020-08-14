@@ -17,6 +17,7 @@ const registerUser = values => {
 
   axios.post('/user/register', values).then(res => {
     notification.success({ message: `Successfully registered as Customer` })
+    window.location.replace('/login')
   }).catch(err => {
     window.location.replace('/register-fail')
   })

@@ -24,6 +24,7 @@ const registerRestaurant = values => {
     axios.put('/user', { role: 'restaurant-owner' }).then(res => {
       localStorage.removeItem("Role")
       localStorage.setItem("Role", 'restaurant-owner')
+      window.location.replace('/my-restaurants')
     })
   }).catch(err => window.location.replace('/register-fail'))
 
