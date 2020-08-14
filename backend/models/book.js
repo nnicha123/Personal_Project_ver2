@@ -5,6 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     time: {
       type: DataTypes.STRING(200)
+    },
+    status: {
+      type: DataTypes.ENUM('completed', 'pending', 'rejected')
+    },
+    paidTotal: {
+      type: DataTypes.FLOAT
     }
   })
   return Book;
