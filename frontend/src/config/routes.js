@@ -15,6 +15,7 @@ import YourOrders from '../components/pages/YourOrders'
 import ContactUs from '../components/pages/ContactUs'
 import BecomeOwner from '../components/pages/BecomeOwner'
 import MyRestaurants from '../components/pages/MyRestaurants'
+import MyRestaurantProfile from '../components/pages/MyRestaurantProfile'
 
 const components = {
   bookNow: {
@@ -84,6 +85,10 @@ const components = {
   myRestaurants: {
     url: "/my-restaurants",
     page: MyRestaurants
+  },
+  myRestaurantProfile: {
+    url: "/my-restaurants/profile",
+    page: MyRestaurantProfile
   }
 };
 
@@ -116,6 +121,7 @@ export default {
     components.requestRes,
     components.menuRes,
     components.contactUs,
-    components.yourOrders
+    components.yourOrders,
+    components.myRestaurantProfile
   ]
 }

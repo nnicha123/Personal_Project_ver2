@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     category: {
       type: DataTypes.STRING(400)
+    },
+    orderedBy: {
+      type: DataTypes.INTEGER
+    },
+    responded: {
+      type: DataTypes.BOOLEAN
     }
   })
   Menu.associate = models => {

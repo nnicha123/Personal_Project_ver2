@@ -6,7 +6,10 @@ const getUser = async (req, res) => {
   const user = await db.user.findAll({})
   res.status(200).send(user)
 }
-
+const getUserById = async (req, res) => {
+  const targetUser = await db.user.findOne({ where: { id: req.params.userId } })
+  res.status(200).send(targetUser)
+}
 const registerUser = async (req, res) => {
   const { username, password, email, first_name, last_name, phone_number, profile_pic, role } = req.body
   const usernameReplicate = await db.user.findOne({ where: { username } })
@@ -53,4 +56,4 @@ const updateUser = async (req, res) => {
   }
 }
 
-module.exports = { registerUser, loginUser, getUser, updateUser }
+module.exports = { registerUser, loginUser, getUser, updateUser, getUserById }

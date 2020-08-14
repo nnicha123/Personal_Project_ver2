@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     menu_pic: {
       type: DataTypes.STRING(400)
+    },
+    quantity: {
+      type: DataTypes.INTEGER
     }
   })
   return Order

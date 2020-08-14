@@ -29,7 +29,7 @@ function Menu() {
         <img src="restaurants/fishships2.jpg" />
       </div>
       <div className="topResOuter">
-        <h3 style={{ margin: '20px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h3>
+        <h3 style={{ marginTop: '20px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h3>
         <div className="mymenuRestaurants">
           {selectedMenu.map((el, index) => {
             return (

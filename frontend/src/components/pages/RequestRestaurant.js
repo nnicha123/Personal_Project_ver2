@@ -27,6 +27,7 @@ function RequestRestaurant() {
       setAllMenuIds(allMenugenId)
       axios.get('/order/all').then(res => {
         // allMenugenId.forEach(el => console.log(el))
+        console.log(res)
         let menuBought = []
         for (let i = 0; i < res.data.length; i++) {
           // console.log(res.data[i].menu_id)
@@ -34,7 +35,7 @@ function RequestRestaurant() {
             // console.log(res.data[i].menu_id)
             axios.get(`/menu/1/${res.data[i].menu_id}`).then(res => {
               menuBought.push(res.data)
-              console.log(menuBought)
+              // console.log(menuBought)
               // 
               setMenuPost([...menuBought])
             })

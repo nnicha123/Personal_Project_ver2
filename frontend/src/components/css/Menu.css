@@ -6,6 +6,9 @@
   width: 100%;
   height: 100%;
 }
+.topResOuter {
+  margin-left: 50px;
+}
 .mymenuRestaurants {
   min-height: 50vh;
   display: flex;

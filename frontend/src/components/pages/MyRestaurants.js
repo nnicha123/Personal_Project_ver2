@@ -4,15 +4,16 @@ import axios from '../../config/axios'
 import '../css/MyRestaurant.css'
 import MyRestaurantProfile from './MyRestaurantProfile'
 import { Button, Input } from 'antd'
+import { Link } from 'react-router-dom'
 
 function MyRestaurants() {
 
   const [user_id, setUserId] = useState(localStorage.getItem("id"))
   const [restaurants, setRestaurants] = useState([])
   const [chosenRestaurant, setChosenRestaurant] = useState({})
-  const [showIndRestaurant, setShowIndRestaurant] = useState(false)
   const [changePic, setChangePic] = useState(false)
   const [newPic, setNewPic] = useState('')
+  const [firstName, setFirstName] = useState('User')
 
   const changeProfilePicHandler = (index) => {
     axios.put(`/restaurant/${restaurants[index].id}`, { profile_pic: newPic }).then(res => console.log(res))
@@ -20,9 +21,8 @@ function MyRestaurants() {
 
   const showRestaurant = (index) => {
     setChosenRestaurant(restaurants[index])
-    setShowIndRestaurant(true)
-    console.log(restaurants[index])
     localStorage.setItem("resId", restaurants[index].id)
+    window.location.replace('/my-restaurants/profile')
   }
 
   useEffect(() => {
@@ -30,12 +30,16 @@ function MyRestaurants() {
     axios.get(`/restaurant/${user_id}`).then(res => {
       console.log(res)
       setRestaurants(res.data)
+      axios.get(`/user/${user_id}`).then(res => {
+        setFirstName(res.data.first_name)
+      })
     })
   }, [])
   return (
     <div>
       <RestaurantNav selected={"7"} />
-      {!showIndRestaurant && <div className="myRestaurants">
+      <h2 style={{ margin: '40px' }}>Welcome {firstName}, Here are your current restaurants!</h2>
+      <div className="myRestaurants">
         {restaurants.map((el, index) => {
           return (
             <div key={el.id} className="Restaurants">
@@ -47,15 +51,18 @@ function MyRestaurants() {
                   <Button onClick={() => changeProfilePicHandler(index)}>Submit</Button>
                 </span>}
               </div>
-              <div className="restaurantName">{el.name}</div>
-              <Button onClick={() => showRestaurant(index)}>See Restaurant</Button>
+              <div className="restaurantName">
+                <h4>{el.name}</h4>
+                <Button onClick={() => { showRestaurant(index) }} className="seeRestaurantButton">
+                  See Restaurant
+              </Button>
+              </div>
+
             </div>
 
           )
         })}
-      </div>}
-
-      {showIndRestaurant && <MyRestaurantProfile chosen={chosenRestaurant} />}
+      </div>
     </div>
   )
 }

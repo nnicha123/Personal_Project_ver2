@@ -1,32 +1,55 @@
-.outerProfile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.image-bannerMyRestaurant {
+.usermenuBanner {
   width: 100%;
-  height: 200px;
+  height: 300px;
   position: relative;
 }
-.changeCover {
+.changeCoverButton {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 10px;
 }
-.image-bannerMyRestaurant img {
+.usermenuBanner img {
   width: 100%;
   height: 100%;
 }
-
-.profileContents {
-  padding: 40px;
-  width: 100%;
+.usermymenuRestaurants {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
-.rating-info {
+.usermenuRestaurants {
+  width: 200px;
+  height: 250px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  width: 400px;
   margin: 10px;
+  overflow: hidden;
+  text-align: left;
+}
+.usermenuImageDiv {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+.usermenuRestaurants:hover img {
+  transition: all 1s ease;
+  transform: scale(1.5);
+  opacity: 0.5;
+  cursor: pointer;
+}
+.usermenuImageDiv img {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transform: scale(1);
+}
+
+.usermenucontentDiv {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .description {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -35,13 +58,54 @@
   margin: 10px;
   height: 200px;
 }
-.ButtonGroup {
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+.descriptionSmall {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
-}
-Button {
+  width: 700px;
   margin: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.descriptionOwner {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: 700px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  position: relative;
+}
+.commentTop {
+  display: flex;
+  justify-content: space-between;
+}
+.deleteReport {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.retaurantMenusMap {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 80px;
+}
+.image-bannerUserView {
+  width: 100%;
+  height: 200px;
+}
+.image-bannerUserView img {
+  width: 100%;
+  height: 100%;
+}
+.emptyDiv {
+  height: 200px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  width: 700px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

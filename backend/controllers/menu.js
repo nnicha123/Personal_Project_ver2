@@ -16,18 +16,18 @@ const getMenu = async (req, res) => {
 }
 const addMenu = async (req, res) => {
   const { title, description, menu_pic, price, average_rating, promotion, category } = req.body
-  const newMenu = await db.menu.create({ title, description, menu_pic, price, average_rating, promotion, category, restaurant_id: req.params.restaurant_id })
+  const newMenu = await db.menu.create({ title, description, menu_pic, price, average_rating, promotion, category, restaurant_id: req.params.restaurant_id, responded: false })
   res.status(201).send(newMenu)
 }
 const updateMenu = async (req, res) => {
   const targetId = req.params.id
-  const { title, description, menu_pic, price, average_rating, promotion, category } = req.body
+  const { title, description, menu_pic, price, average_rating, promotion, category, responded, orderedBy } = req.body
   const foundTarget = await db.menu.findOne({ where: { id: targetId, restaurant_id: req.params.restaurant_id } })
   if (!foundTarget) {
     res.status(404).send({ message: 'Target not found' })
   }
   else {
-    await foundTarget.update({ title, description, menu_pic, price, average_rating, promotion, category })
+    await foundTarget.update({ title, description, menu_pic, price, average_rating, promotion, category, responded, orderedBy })
     res.status(200).send({ message: 'Successfully updated target' })
   }
 }

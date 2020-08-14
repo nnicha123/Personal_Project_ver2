@@ -7,6 +7,6 @@ const authentication = passport.authenticate("jwt", { session: false })
 router.get('/:restaurant_id', authentication, feedbackRestController.getFeedbackRest)
 router.post('/:restaurant_id', authentication, feedbackRestController.addFeedbackRest)
 router.put('/:restaurant_id', authentication, feedbackRestController.updateFeedbackRest)
-router.delete('/:restaurant_id', authentication, feedbackRestController.deleteFeedbackRest)
+router.delete('/:restaurant_id/:user_id', authentication, feedbackRestController.deleteFeedbackRest)
 
 module.exports = router

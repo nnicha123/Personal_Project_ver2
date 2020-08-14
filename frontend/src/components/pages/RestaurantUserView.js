@@ -19,7 +19,9 @@ function RestaurantUserView(props) {
 
   const addRestaurantFeedback = () => {
     if (comment && rating != 0) {
-      axios.post(`/feedback-rest/${localStorage.getItem("resId")}`, { no_of_stars: rating, comment: comment }).then(res => console.log(res.data))
+      axios.post(`/feedback-rest/${localStorage.getItem("resId")}`, { no_of_stars: rating, comment: comment }).then(res => {
+        window.location.reload()
+      })
     }
   }
 

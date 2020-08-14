@@ -6,12 +6,16 @@
   width: 100%;
   height: 100%;
 }
+.topResOuter {
+  margin-left: 50px;
+}
 .myhomeRestaurants {
   min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
+  /* margin-left: 40px; */
 }
 .homeRestaurants {
   width: 200px;
