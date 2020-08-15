@@ -12,14 +12,14 @@ export default function Step1(props) {
             {/* <FormItemLabel htmlFor="date">Select Dine Date</FormItemLabel> */}
             <h3>Please select date and time in which you wish to dine with us</h3>
             <p>We are open everyday on weekdays, but please excuse our holidays!</p>
-            <Input style={{ width: '400px' }}
+            <DatePicker style={{ width: '400px' }}
                 className="form-control"
                 id="date"
                 name="date"
                 type="text"
                 placeholder="Select Date"
                 value={props.date}
-                onChange={props.handleChange}
+                onChange={props.onChange}
             />
             {/* <DatePicker onChange={props.handleChange} value={props.date} style={{ width: '400px' }} /> */}
             <br />

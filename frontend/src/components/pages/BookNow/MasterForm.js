@@ -19,10 +19,16 @@ class MasterForm extends React.Component {
             [name]: value
         })
     }
+    onChange = (date, dateString) => {
+        console.log(date)
+        this.setState({ date: date })
+    }
     handleSubmit = event => {
         event.preventDefault();
         const { date, time, restaurantName, paidTotal } = this.state
-        axios.post(`/book/${localStorage.getItem("id")}/${localStorage.getItem("resId")}`, { date, time, restaurantName, paidTotal }).then(res => console.log(res))
+        axios.post(`/book/${localStorage.getItem("id")}/${localStorage.getItem("resId")}`, { date, time, restaurantName, paidTotal }).then(res => {
+            window.location.replace('/your-bookings')
+        })
     }
     _next = () => {
         let currentStep = this.state.currentStep
@@ -77,6 +83,7 @@ class MasterForm extends React.Component {
                         <Step1
                             currentStep={this.state.currentStep}
                             handleChange={this.handleChange}
+                            onChange={this.onChange}
                             date={this.state.date}
                             time={this.state.time} />
                         <Step2

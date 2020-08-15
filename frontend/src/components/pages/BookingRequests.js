@@ -65,7 +65,7 @@ function BookingRequests() {
                 return (<li key={el.createdAt}>
                   {el.status == 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
                     <div>{el.restaurantName}</div>
-                    <div>{el.date}, {el.time}</div>
+                    <div>{el.date.substr(0, 10)}, {el.time}</div>
                     <div>Paid: ${el.paidTotal}</div>
                     <div>{el.status}</div>
                     <div>
@@ -75,11 +75,7 @@ function BookingRequests() {
                   </div>}
                 </li>)
               })}
-              <li>
-                <div className="orderDark" onClick={() => window.location.replace('/home')}>
-                  <PlusCircleOutlined />
-                </div>
-              </li>
+
             </ul>
           </div>
           <div className="orderBox">
