@@ -34,7 +34,7 @@
 }
 .usermenuRestaurants {
   width: 200px;
-  height: 250px;
+  height: 230px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   margin: 10px;
   overflow: hidden;
@@ -64,7 +64,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: whitesmoke;
+  background-color: #ffffffdc;
 }
 .description {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -91,7 +91,7 @@
   flex-direction: column;
   height: 120px;
   position: relative;
-  background-color: whitesmoke;
+  background-color: #ffffffdc;
 }
 .commentTop {
   display: flex;
@@ -127,8 +127,8 @@
 }
 
 .addMenuRes {
-  width: 230px;
-  height: 250px;
+  width: 200px;
+  height: 230px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   background-color: rgb(209, 206, 206);
   display: flex;

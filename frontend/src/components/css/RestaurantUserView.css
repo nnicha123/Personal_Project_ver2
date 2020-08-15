@@ -7,8 +7,8 @@
   height: 100%;
 }
 .profileContents {
-  margin-left: 80px;
-  margin-top: 40px;
+  padding-left: 80px;
+  padding-top: 40px;
 }
 .textArea {
   border: none;
@@ -61,6 +61,7 @@
   width: 700px;
   margin: 10px;
   height: 200px;
+  background: #ffffffdc;
 }
 .descriptionSmall {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -70,6 +71,7 @@
   height: 100px;
   display: flex;
   justify-content: space-between;
+  background: #ffffffdc;
 }
 .image-bannerUserView {
   width: 100%;

@@ -3,7 +3,7 @@ import RestaurantNav from './Navigation/RestaurantNav'
 import { Button } from 'antd'
 import '../css/YourOrders.css'
 import axios from '../../config/axios'
-import { CheckCircleOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined } from '@ant-design/icons';
 import Footer from './Footer'
 
 function BookingRequests() {
@@ -37,11 +37,13 @@ function BookingRequests() {
   const acceptRequest = (userId, restaurantId, index) => {
     axios.put(`/book/${userId}/${restaurantId}`, { status: "completed" }).then(res => {
       menuPost[index].status = "completed"
+      window.location.reload()
     })
   }
   const declineRequest = (userId, restaurantId, index) => {
     axios.put(`/book/${userId}/${restaurantId}`, { status: "rejected" }).then(res => {
       menuPost[index].status = "rejected"
+      window.location.reload()
     })
   }
   const deleteOrder = (customerId, menuId) => {
@@ -54,27 +56,55 @@ function BookingRequests() {
       <div className="homeBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>
-      <div className="orderOuter">
-        <div className="orderBox">
-          <h2 style={{ margin: '30px' }}>Your Booking Requests</h2>
-          <ul style={{ marginTop: '40px' }}>
-            {menuPost.map((el, index) => {
-              return (<li key={el.createdAt}>
-                <div className="order">
-                  <div>{el.date}</div>
-                  <div>{el.time}</div>
-                  <div>{el.status}</div>
-                  <div>
-                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.restaurant_id, index)}> ACCEPT</Button>
-                    <Button onClick={() => declineRequest(el.user_id, el.restaurant_id, index)}>DECLINE</Button>
-                  </div>
-                  {/* <div>
-                    <CheckCircleOutlined />
-                  </div> */}
+      <div className="topResOuter">
+        <div className="orderOuter">
+          <div className="orderBox">
+            <h2 style={{ margin: '30px', marginBottom: '0' }}>Current Booking Requests</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {menuPost.map((el, index) => {
+                return (<li key={el.createdAt}>
+                  {el.status == 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
+                    <div>{el.restaurantName}</div>
+                    <div>{el.date}, {el.time}</div>
+                    <div>Paid: ${el.paidTotal}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.restaurant_id, index)}> ACCEPT</Button>
+                      <Button onClick={() => declineRequest(el.user_id, el.restaurant_id, index)}>DECLINE</Button>
+                    </div>
+                  </div>}
+                </li>)
+              })}
+              <li>
+                <div className="orderDark" onClick={() => window.location.replace('/home')}>
+                  <PlusCircleOutlined />
                 </div>
-              </li>)
-            })}
-          </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="orderBox">
+            <h2 style={{ margin: '30px' }}>Resolved Booking Requests</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {menuPost.map((el, index) => {
+                return (<li key={el.createdAt}>
+                  {el.status != 'pending' && <div className="order " style={{ background: 'grey' }}>
+                    <div>{el.restaurantName}</div>
+                    <div>{el.date}, {el.time}</div>
+                    <div>Paid: ${el.paidTotal}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      <Button>Delete</Button>
+                    </div>
+                  </div>}
+                </li>)
+              })}
+              <li>
+                <div className="orderDark" onClick={() => window.location.replace('/home')}>
+                  <PlusCircleOutlined />
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <Footer />

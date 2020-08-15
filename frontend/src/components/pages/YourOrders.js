@@ -56,6 +56,7 @@ function YourOrders() {
                     <div>
                       <div>
                         <select name="Quantity" onChange={(e) => setNewQuantity(e.target.value)}>
+                          <option value="">no.</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>

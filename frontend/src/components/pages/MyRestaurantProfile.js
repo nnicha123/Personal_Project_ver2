@@ -7,7 +7,7 @@ import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
 import { PlusCircleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Rate } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import Footer from './Footer'
 
@@ -94,7 +94,7 @@ function MyRestaurantProfile() {
           </div>
           <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
           <div style={{ margin: '10px', marginBottom: '30px' }}>
-            <h3>Average Rating : {avg_rating}/5</h3>
+            <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
           </div>
           <h3 style={{ margin: '10px' }}>Comments</h3>
           {
@@ -130,7 +130,7 @@ function MyRestaurantProfile() {
                 <div className="usermenucontentDiv">
                   <div>
                     <div>{el.title}</div>
-                    <div>Rating : {el.average_rating}/5</div>
+                    {/* <div>Rating : {el.average_rating}/5</div> */}
                   </div>
                   <Button style={{ width: '70px' }}>View</Button>
                 </div>

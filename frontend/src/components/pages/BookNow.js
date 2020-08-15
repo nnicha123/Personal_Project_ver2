@@ -10,7 +10,9 @@ function BookNow() {
   return (
     <div>
       {LocalStorageService.getUserRole() === 'user' ? <UserNav /> : <RestaurantNav />}
-      <MasterForm />
+      <div className="topResOuter">
+        <MasterForm />
+      </div>
     </div>
   )
 }

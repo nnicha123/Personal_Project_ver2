@@ -63,76 +63,79 @@ function RestaurantUserView(props) {
         <div className="usermenuBanner">
           <img src={restaurant.cover_pic} />
         </div>
-        <div className="profileContents">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '730px' }}>
-            <h3 style={{ marginLeft: '10px', fontSize: '40px' }}>{restaurant.name}</h3>
-            <Button type="primary">
-              <Link to="/book-now">Book Now</Link>
-            </Button>
-          </div>
-          <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
-          <div style={{ margin: '10px', marginBottom: '30px' }}>
-            <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
-          </div>
-          {
-            feedbacks.map(el => {
-              return (<div className="descriptionSmall">
-                {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
-                  <div>{el.comment}</div>
-                  <div> <Rate allowHalf value={el.no_of_stars} /></div>
-                </div>}
-                {
-                  el.reported && <div className="commentTop">
-                    <i>This comment is inappropriate</i>
-                  </div>
-                }
-              </div>)
-
-            })
-          }
-          <div className="description">
-            <div style={{ marginBottom: '15px' }}>
-              <span>Rate This Restaurant :
-            <select class="ratingInput" name="rating" onChange={(e) => setRating(e.target.value)}>
-                  {/* <option value="">-- Rate --</option> */}
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </span>
-            </div>
-            Add Comments
-            <textarea className="textArea" type="text" style={{ width: '100%', marginTop: '10px' }} value={comment} onChange={(e) => setComment(e.target.value)} />
-            <div>
-              <Button type="primary" style={{ margin: 0 }} onClick={() => addRestaurantFeedback()}>Add Feedback</Button>
-              <Button>
-                <Link to="/home">Back</Link>
+        <div className="topResOuter">
+          <div className="profileContents">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '730px' }}>
+              <h3 style={{ marginLeft: '10px', fontSize: '40px' }}>{restaurant.name}</h3>
+              <Button type="primary">
+                <Link to="/book-now">Book Now</Link>
               </Button>
             </div>
+            <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
+            <div style={{ margin: '10px', marginBottom: '30px' }}>
+              <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
+            </div>
+            {
+              feedbacks.map(el => {
+                return (<div className="descriptionSmall">
+                  {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
+                    <div>{el.comment}</div>
+                    <div> <Rate allowHalf value={el.no_of_stars} /></div>
+                  </div>}
+                  {
+                    el.reported && <div className="commentTop">
+                      <i>This comment is inappropriate</i>
+                    </div>
+                  }
+                </div>)
+
+              })
+            }
+            <div className="description">
+              <div style={{ marginBottom: '15px' }}>
+                <span>Rate This Restaurant :
+            <select class="ratingInput" name="rating" onChange={(e) => setRating(e.target.value)}>
+                    {/* <option value="">-- Rate --</option> */}
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </span>
+              </div>
+            Add Comments
+            <textarea className="textArea" type="text" style={{ width: '100%', marginTop: '10px' }} value={comment} onChange={(e) => setComment(e.target.value)} />
+              <div>
+                <Button type="primary" style={{ margin: 0 }} onClick={() => addRestaurantFeedback()}>Add Feedback</Button>
+                <Button>
+                  <Link to="/home">Back</Link>
+                </Button>
+              </div>
+            </div>
+
           </div>
 
-        </div>
-      </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '80px' }}>
-        {menus.map((el, index) => {
-          return (
-            <div key={el.id} className="usermenuRestaurants">
-              <div className="usermenuImageDiv">
-                <img src={el.menu_pic} />
-              </div>
-              <div className="usermenucontentDiv">
-                <div>
-                  <div>{el.title}</div>
-                  <div>Rating : {el.average_rating}/5</div>
-                </div>
-                <Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button>
-              </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '80px' }}>
+            {menus.map((el, index) => {
+              return (
+                <div key={el.id} className="usermenuRestaurants">
+                  <div className="usermenuImageDiv">
+                    <img src={el.menu_pic} />
+                  </div>
+                  <div className="usermenucontentDiv">
+                    <div>
+                      <div>{el.title}</div>
+                      {/* <div>Rating : {el.average_rating}/5</div> */}
+                    </div>
+                    <Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button>
+                  </div>
 
-            </div>
-          )
-        })}
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
       <Footer />
     </div >

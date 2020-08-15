@@ -39,32 +39,60 @@ function YourBookings() {
       <div className="homeBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>
-      <div className="orderOuter">
-        <div className="orderBox">
-          <h2 style={{ margin: '30px', marginBottom: '0' }} >Your Bookings</h2>
-          <ul style={{ marginTop: '40px' }}>
-            {yourOrders.map((el, index) => {
-              return (<li key={el.id}>
-                <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
-                  {/* <img src={el.menu_pic} /> */}
-                  <div>{el.restaurantName}</div>
-                  <div>{el.date}</div>
-                  <div>{el.time}</div>
-                  <div>{el.status}</div>
-                  <div>
-                    {/* <Button type="primary" style={{ margin: 0 }}>Update</Button> */}
-                    <Button onClick={() => cancelBuy(el.restaurant_id)}>Cancel</Button>
+      <div className="topResOuter">
+        <div className="orderOuter">
+          <div className="orderBox">
+            <h2 style={{ margin: '30px', marginBottom: '0' }} >Current Bookings</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {yourOrders.map((el, index) => {
+                return (<li key={el.id}>
+                  {el.status == 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
+                    {/* <img src={el.menu_pic} /> */}
+                    <div>{el.restaurantName}</div>
+                    <div>{el.date}, {el.time}</div>
+                    <div>Paid: ${el.paidTotal}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      {/* <Button type="primary" style={{ margin: 0 }}>Update</Button> */}
+                      <Button onClick={() => cancelBuy(el.restaurant_id)}>Cancel</Button>
 
-                  </div>
+                    </div>
+                  </div>}
+                </li>)
+              })}
+              <li>
+                <div className="orderDark" onClick={() => window.location.replace('/home')}>
+                  <PlusCircleOutlined />
                 </div>
-              </li>)
-            })}
-            <li>
-              <div className="orderDark" onClick={() => window.location.replace('/home')}>
-                <PlusCircleOutlined />
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="orderBox">
+            <h2 style={{ margin: '30px', marginBottom: '0' }} >Past Bookings</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {yourOrders.map((el, index) => {
+                return (<li key={el.id}>
+                  {el.status != 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
+                    {/* <img src={el.menu_pic} /> */}
+                    <div>{el.restaurantName}</div>
+                    <div>{el.date}, {el.time}</div>
+                    <div>Paid: ${el.paidTotal}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      {/* <Button type="primary" style={{ margin: 0 }}>Update</Button> */}
+                      <Button onClick={() => cancelBuy(el.restaurant_id)}>Cancel</Button>
+
+                    </div>
+                  </div>}
+                </li>)
+              })}
+              <li>
+                <div className="orderDark" onClick={() => window.location.replace('/home')}>
+                  <PlusCircleOutlined />
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <Footer />

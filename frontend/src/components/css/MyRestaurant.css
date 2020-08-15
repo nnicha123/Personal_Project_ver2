@@ -1,16 +1,16 @@
 .myRestaurants {
   min-height: 50vh;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   width: 80%;
 }
 .Restaurants {
-  width: 230px;
-  height: 250px;
+  width: 200px;
+  height: 230px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   margin: 10px;
   overflow: hidden;
-  background-color: whitesmoke;
+  background-color: #ffffffdc;
 }
 .imageDiv {
   width: 100%;

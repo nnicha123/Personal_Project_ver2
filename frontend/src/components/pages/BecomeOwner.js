@@ -39,82 +39,84 @@ function BecomeOwner() {
       <div className="homeBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>
-      <Content className="content">
-        <div className="register" style={{ textAlign: 'center' }}>
-          <h3>Register Restaurant</h3>
-          <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={registerRestaurant}
-          >
-            <Form.Item
-              name="name"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input Restaurant name!',
-                },
-              ]}
+      <div className="topResOuter">
+        <Content className="content">
+          <div className="register" style={{ textAlign: 'center' }}>
+            <h3>Register Restaurant</h3>
+            <Form
+              name="normal_login"
+              className="login-form"
+              initialValues={{
+                remember: true,
+              }}
+              onFinish={registerRestaurant}
             >
-              <Input
-                prefix={<ShopOutlined className="site-form-item-icon" />}
-                type="name"
-                placeholder="Name"
-              />
-            </Form.Item>
-            <Form.Item
-              name="phone_number"
-              rules={[
-                {
-                  required: false,
-                },
-              ]}
-            >
-              <Input
-                prefix={<PhoneOutlined className="site-form-item-icon" />}
-                type="phone_number"
-                placeholder="Phone Number"
-              />
-            </Form.Item>
-            <Form.Item
-              name="description"
-              rules={[
-                {
-                  required: false
-                },
-              ]}
-            >
-              <TextArea
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="description"
-                placeholder="Description (optional)"
-              />
-            </Form.Item>
-            <Form.Item
-              name="address"
-              rules={[
-                {
-                  required: false
-                },
-              ]}
-            >
-              <TextArea
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="address"
-                placeholder="Address (Can edit later)"
-              />
-            </Form.Item>
+              <Form.Item
+                name="name"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input Restaurant name!',
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<ShopOutlined className="site-form-item-icon" />}
+                  type="name"
+                  placeholder="Name"
+                />
+              </Form.Item>
+              <Form.Item
+                name="phone_number"
+                rules={[
+                  {
+                    required: false,
+                  },
+                ]}
+              >
+                <Input
+                  prefix={<PhoneOutlined className="site-form-item-icon" />}
+                  type="phone_number"
+                  placeholder="Phone Number"
+                />
+              </Form.Item>
+              <Form.Item
+                name="description"
+                rules={[
+                  {
+                    required: false
+                  },
+                ]}
+              >
+                <TextArea
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="description"
+                  placeholder="Description (optional)"
+                />
+              </Form.Item>
+              <Form.Item
+                name="address"
+                rules={[
+                  {
+                    required: false
+                  },
+                ]}
+              >
+                <TextArea
+                  prefix={<LockOutlined className="site-form-item-icon" />}
+                  type="address"
+                  placeholder="Address (Can edit later)"
+                />
+              </Form.Item>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => registerRestaurant}>
-                Register</Button>
-            </Form.Item>
-          </Form>
-        </div>
-      </Content>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => registerRestaurant}>
+                  Register</Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </Content>
+      </div>
       <Footer />
     </div>
   )
