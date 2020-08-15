@@ -39,7 +39,7 @@ function Menu() {
         <img src="restaurants/fishships2.jpg" />
       </div>
       <div className="topResOuter">
-        <div style={{ width: '80%', margin: '30px auto' }}>
+        <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
           <h2 style={{ margin: '30px 10px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
         </div>
 

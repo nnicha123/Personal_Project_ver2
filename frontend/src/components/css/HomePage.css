@@ -21,7 +21,19 @@
   height: 100%;
 }
 .topResOuter {
-  /* margin-left: 50px; */
+  /* min-height: 130vh; */
+  height: max-content;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1),
+      rgba(200, 226, 250, 0.8)
+    ),
+    url(./../../templetwo.jpg);
+  background-size: cover;
+  padding-bottom: 30px;
+  /* background-position: top; */
+  /* clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); */
+  position: relative;
 }
 .myhomeRestaurants {
   min-height: 50vh;
@@ -38,6 +50,8 @@
   overflow: hidden;
   text-align: left;
   position: relative;
+  background-color: whitesmoke;
+  z-index: 100px;
 }
 
 .homeImageDiv {

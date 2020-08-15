@@ -43,8 +43,8 @@ function MyRestaurants() {
       <div className="homeBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>
-      <div>
-        <div style={{ width: '80%', margin: '30px auto' }}>
+      <div className="topResOuter">
+        <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
           <h2 style={{ margin: '30px 10px' }}>Welcome {firstName}, Here are your current restaurants!</h2>
         </div>
         <div className="myRestaurants" style={{ margin: '0 auto' }}>

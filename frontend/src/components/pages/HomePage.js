@@ -34,7 +34,7 @@ function HomePage() {
         <img src="restaurants/fishchips.jpg" />
       </div>
       <div className="topResOuter">
-        <div style={{ width: '80%', margin: '30px auto' }}>
+        <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
           <h2 style={{ marginLeft: '10px' }}>Dine in at our Top Restaurants!</h2>
           <h3 style={{ marginLeft: '10px' }}>Not free to dine in? Not a problem! Checkout our takeaways!
           <span> <Button type="primary"><Link to="/menu">Menu</Link></Button></span>

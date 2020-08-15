@@ -32,7 +32,7 @@ function Promotions() {
         <img src="restaurants/fishchips.jpg" />
       </div>
       <div className="topResOuter">
-        <div style={{ width: '80%', margin: '30px auto' }}>
+        <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
           <h2 style={{ margin: '30px 10px' }}>Today's Promotions!!!</h2>
         </div>
         <div className="myhomeRestaurants" style={{ margin: '0 auto' }}>
