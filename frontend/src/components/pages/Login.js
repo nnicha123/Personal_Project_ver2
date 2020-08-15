@@ -26,7 +26,7 @@ const onFinish = values => {
 
 function Login() {
   return (
-    <div className="loginWrapper">
+    <div className="topResOuter">
       <GuestNav selected={'4'} />
       <Content className="loginOuter">
         <div className="login">

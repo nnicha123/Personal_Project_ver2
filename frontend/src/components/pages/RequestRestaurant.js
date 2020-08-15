@@ -77,48 +77,50 @@ function RequestRestaurant() {
       <div className="menuBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>
-      <div className="orderOuter">
-        <div className="orderBox">
-          <h2 style={{ margin: '30px' }}>Current Orders</h2>
-          <ul style={{ marginTop: '40px' }}>
-            {menuPost.map((el, index) => {
-              return (<li key={el.createdAt}>
-                <div className="order">
-                  <img src={el.menu_pic} />
-                  <div>{el.title}</div>
-                  <div>${el.price}</div>
-                  <div>{el.quantity}</div>
-                  <div>{el.status}</div>
-                  <div>
-                    <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.menu_id, index)}> ACCEPT</Button>
-                    <Button onClick={() => declineRequest(el.user_id, el.menu_id, index)}>DECLINE</Button>
-                  </div>
-                  {/* <div>
+      <div className="topResOuter">
+        <div className="orderOuter">
+          <div className="orderBox">
+            <h2 style={{ margin: '30px' }}>Current Orders</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {menuPost.map((el, index) => {
+                return (<li key={el.createdAt}>
+                  <div className="order">
+                    <img src={el.menu_pic} />
+                    <div>{el.title}</div>
+                    <div>${el.price}</div>
+                    <div>{el.quantity}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.menu_id, index)}> ACCEPT</Button>
+                      <Button onClick={() => declineRequest(el.user_id, el.menu_id, index)}>DECLINE</Button>
+                    </div>
+                    {/* <div>
                     <CheckCircleOutlined />
                   </div> */}
-                </div>
-              </li>)
-            })}
-          </ul>
-        </div>
-        <div className="orderBox">
-          <h2 style={{ margin: '30px' }}>Resolved Orders</h2>
-          <ul style={{ marginTop: '40px' }}>
-            {doneRequests.map((el, index) => {
-              return (<li key={el.id} >
-                <div className="order" style={{ background: 'grey' }}>
-                  <img src={el.menu_pic} />
-                  <div>{el.title}</div>
-                  <div>${el.price}</div>
-                  <div>{el.createdAt}</div>
-                  <div>{el.status}</div>
-                  <div>
-                    <Button style={{ marginRight: '0' }} onClick={() => deleteOrder(el.orderedBy, el.id)}> Delete</Button>
                   </div>
-                </div>
-              </li>)
-            })}
-          </ul>
+                </li>)
+              })}
+            </ul>
+          </div>
+          <div className="orderBox">
+            <h2 style={{ margin: '30px' }}>Resolved Orders</h2>
+            <ul style={{ marginTop: '40px' }}>
+              {doneRequests.map((el, index) => {
+                return (<li key={el.id} >
+                  <div className="order" style={{ background: 'grey' }}>
+                    <img src={el.menu_pic} />
+                    <div>{el.title}</div>
+                    <div>${el.price}</div>
+                    <div>{el.createdAt}</div>
+                    <div>{el.status}</div>
+                    <div>
+                      <Button style={{ marginRight: '0' }} onClick={() => deleteOrder(el.orderedBy, el.id)}> Delete</Button>
+                    </div>
+                  </div>
+                </li>)
+              })}
+            </ul>
+          </div>
         </div>
       </div>
       <Footer />

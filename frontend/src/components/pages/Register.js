@@ -41,7 +41,7 @@ const registerRestaurant = values => {
 
 function Register() {
   return (
-    <div className="registerWrapper">
+    <div className="topResOuter">
       <GuestNav selected={"3"} />
       <Content className="registerOuter">
         <div className="register" style={{ textAlign: 'center' }}>

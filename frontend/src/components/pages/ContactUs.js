@@ -14,7 +14,7 @@ const { Content } = Layout;
 
 function Login() {
   return (
-    <div className="loginWrapper">
+    <div className="topResOuter">
       {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"6"} /> : LocalStorageService.getUserRole() === 'restaurant-owner' ? <RestaurantNav selected={"6"} /> : <GuestNav selected={"2"} />}
       <Content className="contactOuter">
         <div className="contact">
