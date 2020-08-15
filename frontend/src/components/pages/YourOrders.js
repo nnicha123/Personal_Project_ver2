@@ -6,6 +6,7 @@ import axios from '../../config/axios'
 import { PlusCircleOutlined } from '@ant-design/icons';
 import LocalStorageService from '../../services/LocalStorageService'
 import RestaurantNav from './Navigation/RestaurantNav'
+import Footer from './Footer'
 
 
 function YourOrders() {
@@ -38,6 +39,9 @@ function YourOrders() {
   return (
     <div>
       {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"5"} /> : <RestaurantNav selected={"8"} />}
+      <div className="homeBanner">
+        <img src="restaurants/fishchips.jpg" />
+      </div>
       <div className="orderOuter">
         <div className="orderBox">
           <h2 style={{ margin: '30px', marginBottom: '0' }} >Pending Orders</h2>
@@ -101,6 +105,7 @@ function YourOrders() {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -3,11 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: max-content;
   margin: 40px;
 }
 .orderBox {
-  min-height: 500px;
+  min-height: max-content;
   width: 900px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;

@@ -4,6 +4,7 @@ import { Button } from 'antd'
 import '../css/YourOrders.css'
 import axios from '../../config/axios'
 import { CheckCircleOutlined } from '@ant-design/icons';
+import Footer from './Footer'
 
 function RequestRestaurant() {
   const [menuPost, setMenuPost] = useState([])
@@ -73,6 +74,9 @@ function RequestRestaurant() {
   return (
     <div>
       <RestaurantNav selected={"5"} />
+      <div className="menuBanner">
+        <img src="restaurants/fishchips.jpg" />
+      </div>
       <div className="orderOuter">
         <div className="orderBox">
           <h2 style={{ margin: '30px' }}>Current Orders</h2>
@@ -117,6 +121,7 @@ function RequestRestaurant() {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

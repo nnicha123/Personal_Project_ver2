@@ -5,6 +5,7 @@ import '../css/MyRestaurant.css'
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd'
 import { Link } from 'react-router-dom'
+import Footer from './Footer';
 
 function MyRestaurants() {
 
@@ -39,33 +40,41 @@ function MyRestaurants() {
   return (
     <div>
       <RestaurantNav selected={"7"} />
-      <h2 style={{ margin: '40px' }}>Welcome {firstName}, Here are your current restaurants!</h2>
-      <div className="myRestaurants">
-        {restaurants.map((el, index) => {
-          return (
-            <div key={el.id} className="Restaurants">
-              <div className="imageDiv">
-                <img src={el.profile_pic} />
-                {!changePic && <Button className="profilePicChangeButton" onClick={() => setChangePic(true)}>Change</Button>}
-                {changePic && <span className="changePic">
-                  <Input placeholder="Enter new profile pic url" value={newPic} onChange={(e) => { setNewPic(e.target.value) }} />
-                  <Button onClick={() => changeProfilePicHandler(index)}>Submit</Button>
-                </span>}
-              </div>
-              <div className="restaurantName">
-                <h4>{el.name}</h4>
-                <Button onClick={() => { showRestaurant(index) }} className="seeRestaurantButton">
-                  See Restaurant
-              </Button>
-              </div>
-            </div>
-          )
-        })}
-        {!addRestaurantForm && <div className="addMenuRes" onClick={() => window.location.replace('/become-owner')}>
-          <PlusCircleOutlined />
-        </div>}
-
+      <div className="homeBanner">
+        <img src="restaurants/fishchips.jpg" />
       </div>
+      <div>
+        <div style={{ width: '80%', margin: '30px auto' }}>
+          <h2 style={{ margin: '30px 10px' }}>Welcome {firstName}, Here are your current restaurants!</h2>
+        </div>
+        <div className="myRestaurants" style={{ margin: '0 auto' }}>
+          {restaurants.map((el, index) => {
+            return (
+              <div key={el.id} className="Restaurants">
+                <div className="imageDiv">
+                  <img src={el.profile_pic} />
+                  {!changePic && <Button className="profilePicChangeButton" onClick={() => setChangePic(true)}>Change</Button>}
+                  {changePic && <span className="changePic">
+                    <Input placeholder="Enter new profile pic url" value={newPic} onChange={(e) => { setNewPic(e.target.value) }} />
+                    <Button onClick={() => changeProfilePicHandler(index)}>Submit</Button>
+                  </span>}
+                </div>
+                <div className="restaurantName">
+                  <h4>{el.name}</h4>
+                  <Button onClick={() => { showRestaurant(index) }} className="seeRestaurantButton">
+                    See Restaurant
+              </Button>
+                </div>
+              </div>
+            )
+          })}
+          {!addRestaurantForm && <div className="addMenuRes" onClick={() => window.location.replace('/become-owner')}>
+            <PlusCircleOutlined />
+          </div>}
+        </div>
+      </div>
+
+      <Footer />
     </div>
   )
 }

@@ -9,6 +9,7 @@ import LocalStorageService from '../../services/LocalStorageService'
 import { PlusCircleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Form, Input, Button, Checkbox } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+import Footer from './Footer'
 
 
 function MyRestaurantProfile() {
@@ -220,6 +221,7 @@ function MyRestaurantProfile() {
           </Form>
         </div>}
       </div>
+      <Footer />
     </div>
   )
 }

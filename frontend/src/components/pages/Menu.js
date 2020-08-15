@@ -4,8 +4,9 @@ import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
 import axios from '../../config/axios'
 import '../css/Menu.css'
-import { Button } from 'antd'
+import { Button, Rate } from 'antd'
 import { StarFilled } from '@ant-design/icons';
+import Footer from './Footer'
 
 function Menu() {
   const buyItem = (index) => {
@@ -17,10 +18,18 @@ function Menu() {
   }
   const [selectedMenu, setSelectedMenu] = useState([])
   const [userId, setUserId] = useState(localStorage.getItem("id"))
+  const [randomRating, setRandomRating] = useState([])
   useEffect(() => {
     axios.get('/menu').then(res => {
       console.log(res.data)
       setSelectedMenu(res.data)
+      let randRateArr = []
+      for (let i = 0; i < res.data.length; i++) {
+        let randRate = Math.floor(Math.random() * 6) + 1
+        randRateArr.push(randRate)
+        console.log(randRateArr)
+      }
+      setRandomRating(randRateArr)
     })
   }, [])
   return (
@@ -30,18 +39,24 @@ function Menu() {
         <img src="restaurants/fishships2.jpg" />
       </div>
       <div className="topResOuter">
-        <h2 style={{ marginTop: '40px', marginLeft: '50px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
-        <div className="mymenuRestaurants" style={{ margin: '40px', marginTop: '20px' }}>
+        <div style={{ width: '80%', margin: '30px auto' }}>
+          <h2 style={{ margin: '30px 10px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
+        </div>
+
+        <div className="myhomeRestaurants" style={{ margin: '0 auto' }}>
           {selectedMenu.map((el, index) => {
             return (
-              <div key={el.id} className="menuRestaurants">
-                <div className="menuImageDiv">
+              <div key={el.id} className="homeRestaurants">
+                <div className="homeImageDiv">
                   <img src={el.menu_pic} />
                 </div>
                 {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
-                <div className="menucontentDiv">
-                  <div>{el.title}</div>
-                  <Button class="buyButton" onClick={() => { buyItem(index) }}>Buy</Button>
+                <div className="contentDiv">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div>{el.title}</div>
+                    <div><Button class="buyButton" onClick={() => { buyItem(index) }}>Buy</Button></div>
+                  </div>
+                  <div><Rate allowHalf value={randomRating[index]} /></div>
                 </div>
               </div>
 
@@ -49,6 +64,7 @@ function Menu() {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

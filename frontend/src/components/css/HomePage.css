@@ -1,25 +1,38 @@
 .homeBanner {
   width: 100%;
   height: 300px;
+  position: relative;
+}
+.homeBanner:after {
+  text-align: center;
+  padding: 10px;
+  content: 'Checkout Our Top Restaurants With Varieties Of Dining Options';
+  width: 100%;
+  height: 50px;
+  background: #001529;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: rgba(255, 255, 255, 0.65);
 }
 .homeBanner img {
   width: 100%;
   height: 100%;
 }
 .topResOuter {
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 .myhomeRestaurants {
   min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(4, 1fr);
   /* margin-left: 40px; */
 }
 .homeRestaurants {
-  width: 200px;
-  height: 280px;
+  width: 220px;
+  height: max-content;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   margin: 10px;
   overflow: hidden;
@@ -29,7 +42,7 @@
 
 .homeImageDiv {
   width: 100%;
-  height: 70%;
+  height: 150px;
   overflow: hidden;
 }
 .homeRestaurants:hover img {
@@ -47,7 +60,4 @@
 
 .contentDiv {
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }

@@ -1,28 +1,36 @@
 .menuBanner {
   width: 100%;
   height: 300px;
+  position: relative;
+}
+.menuBanner:after {
+  text-align: center;
+  padding: 10px;
+  content: 'Order From Our Best Restaurants Offering Their Top Menus! Eating Conveniently at Home';
+  width: 100%;
+  height: 50px;
+  background: #001529;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: rgba(255, 255, 255, 0.65);
 }
 .menuBanner img {
   width: 100%;
   height: 100%;
 }
-.topResOuter {
-  margin-left: 50px;
-}
+
 .mymenuRestaurants {
   min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 .menuRestaurants {
-  width: 200px;
-  height: 250px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  overflow: hidden;
-  text-align: left;
+  min-height: 50vh;
+  display: grid;
+  width: 80%;
+  grid-template-columns: repeat(4, 1fr);
   position: relative;
 }
 
@@ -51,8 +59,4 @@
 
 .menucontentDiv {
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
 }

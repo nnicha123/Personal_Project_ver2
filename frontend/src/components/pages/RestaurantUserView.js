@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Input } from 'antd'
+import { Button, Input, Rate } from 'antd'
 import axios from '../../config/axios'
 import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
 import '../css/RestaurantUserView.css'
+import Footer from './Footer'
 
 function RestaurantUserView(props) {
   const [user_id, setUserId] = useState(localStorage.getItem("id"))
@@ -35,12 +36,12 @@ function RestaurantUserView(props) {
 
   useEffect(() => {
     axios.get(`/restaurant/${user_id}/${restaurant_id}`).then(res => {
-      // console.log(res)
+      // console.log(res.data)
       setRestaurant(res.data)
       axios.get(`/menu/${restaurant_id}`).then(res => {
         setMenus(res.data)
         axios.get(`/feedback-rest/${restaurant_id}`).then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           setFeedbacks(res.data)
           let averageRating = 0
           let sum = 0
@@ -49,6 +50,7 @@ function RestaurantUserView(props) {
           }
           averageRating = sum / res.data.length
           setAvgRating(averageRating)
+          axios.put(`/restaurant/${restaurant_id}`, { average_rating: averageRating }).then(res => console.log(res.data))
         })
       })
     })
@@ -70,14 +72,14 @@ function RestaurantUserView(props) {
           </div>
           <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
           <div style={{ margin: '10px', marginBottom: '30px' }}>
-            <h3>Average Rating : {avg_rating}/5</h3>
+            <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
           </div>
           {
             feedbacks.map(el => {
               return (<div className="descriptionSmall">
                 {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
                   <div>{el.comment}</div>
-                  <div>{el.no_of_stars}/5</div>
+                  <div> <Rate allowHalf value={el.no_of_stars} /></div>
                 </div>}
                 {
                   el.reported && <div className="commentTop">
@@ -132,6 +134,7 @@ function RestaurantUserView(props) {
           )
         })}
       </div>
+      <Footer />
     </div >
   )
 }

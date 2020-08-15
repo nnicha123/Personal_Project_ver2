@@ -3,10 +3,23 @@
   height: 300px;
   position: relative;
 }
+.usermenuBanner:after {
+  text-align: center;
+  padding: 10px;
+  content: "Welcome To The Restaurant's Profile Page, We Are Excited To Serve You!";
+  width: 100%;
+  height: 50px;
+  background: #001529;
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: rgba(255, 255, 255, 0.65);
+}
 .changeCoverButton {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 50px;
+  right: 50px;
 }
 .usermenuBanner img {
   width: 100%;
@@ -111,7 +124,7 @@
 }
 
 .addMenuRes {
-  width: 200px;
+  width: 230px;
   height: 250px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   background-color: rgb(209, 206, 206);

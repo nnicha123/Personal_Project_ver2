@@ -9,6 +9,7 @@ import '../css/BecomeOwner.css'
 import TextArea from 'antd/lib/input/TextArea';
 import axios from '../../config/axios'
 import LocalStorageService from '../../services/LocalStorageService'
+import Footer from './Footer';
 
 const { Content } = Layout;
 
@@ -35,6 +36,9 @@ function BecomeOwner() {
   return (
     <div>
       {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"7"} /> : <RestaurantNav selected={"9"} />}
+      <div className="homeBanner">
+        <img src="restaurants/fishchips.jpg" />
+      </div>
       <Content className="content">
         <div className="register" style={{ textAlign: 'center' }}>
           <h3>Register Restaurant</h3>
@@ -111,6 +115,7 @@ function BecomeOwner() {
           </Form>
         </div>
       </Content>
+      <Footer />
     </div>
   )
 }

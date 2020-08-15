@@ -21,7 +21,7 @@ const addRestaurant = async (req, res) => {
   res.status(201).send(newRestaurant)
 }
 const updateRestaurant = async (req, res) => {
-  const { name, description, email, address, phone_number, profile_pic, cover_pic, back_theme, average_rating, user_id } = req.body
+  const { name, description, email, address, phone_number, profile_pic, cover_pic, back_theme, average_rating } = req.body
   const targetId = req.params.id
   const foundTarget = await db.restaurant.findOne({ where: { id: targetId } })
   if (!foundTarget) {
