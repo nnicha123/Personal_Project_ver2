@@ -1,9 +1,10 @@
 import React from 'react'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
-import LocalStorageService from '../../../services/LocalStorageService'
+import { UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
+const { SubMenu } = Menu;
 
 const logOut = () => {
   localStorage.clear()
@@ -27,24 +28,24 @@ function GuestNav(props) {
         <Menu.Item key="4">
           <Link to="/promotions">Promotions</Link>
         </Menu.Item>
-        <Menu.Item key="5">
-          <Link to="/your-orders">Your Orders</Link>
-        </Menu.Item>
-        {/* <Menu.Item key="6">
-          <Link to="/contact-us">Contact Us</Link>
-        </Menu.Item> */}
-        <Menu.Item key="7">
+
+        <Menu.Item key="7" style={{ float: 'right' }}>
           <Link to="/become-owner">Become Owner</Link>
         </Menu.Item>
-        {/* <Menu.Item key="8">
-          <Link to="/book-now">Book Now</Link>
-        </Menu.Item> */}
-        <Menu.Item key="9">
-          <Link to="/your-bookings">Your Bookings</Link>
-        </Menu.Item>
-        <Menu.Item key="10" onClick={logOut}>
-          Logout
-        </Menu.Item>
+
+        <SubMenu icon={<UserOutlined />} title="My Records" style={{ float: 'right' }}>
+          <Menu.ItemGroup title="My Cart">
+            <Menu.Item key="setting:3">
+              <Link to="/your-orders">Your Orders</Link>
+            </Menu.Item>
+            <Menu.Item key="setting:4">
+              <Link to="/your-bookings">Your Bookings</Link>
+            </Menu.Item>
+            <Menu.Item key="13" onClick={logOut} style={{ float: 'right' }}>
+              Logout
+            </Menu.Item>
+          </Menu.ItemGroup>
+        </SubMenu>
       </Menu>
     </Header>
   )

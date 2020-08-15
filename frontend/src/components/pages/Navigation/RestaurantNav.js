@@ -1,9 +1,11 @@
 import React from 'react'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
-import LocalStorageService from '../../../services/LocalStorageService'
+import { UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
+const { SubMenu } = Menu;
+
 
 const logOut = () => {
   localStorage.clear()
@@ -27,33 +29,37 @@ function RestaurantNav(props) {
         <Menu.Item key="4">
           <Link to="/promotions">Promotions</Link>
         </Menu.Item>
-        <Menu.Item key="5">
-          <Link to="/request-restaurant">Your Requests</Link>
+        <Menu.Item key="9" style={{ float: 'right' }}>
+          <Link to="/become-owner" >Add Restaurant</Link>
         </Menu.Item>
-        {/* <Menu.Item key="6">
-          <Link to="/contact-us">Contact Us</Link>
-        </Menu.Item> */}
-        <Menu.Item key="7">
-          <Link to="/my-restaurants">My Restaurants</Link>
-        </Menu.Item>
-        <Menu.Item key="8">
-          <Link to="/your-orders">Your Orders</Link>
-        </Menu.Item>
-        <Menu.Item key="9">
-          <Link to="/become-owner">Add Restaurant</Link>
-        </Menu.Item>
-        {/* <Menu.Item key="10">
-          <Link to="/book-now">Book Now</Link>
-        </Menu.Item> */}
-        <Menu.Item key="11">
-          <Link to="/your-bookings">Your Bookings</Link>
-        </Menu.Item>
-        <Menu.Item key="12">
-          <Link to="/booking-requests">Booking Requests</Link>
-        </Menu.Item>
-        <Menu.Item key="13" onClick={logOut}>
-          Logout
-        </Menu.Item>
+        <SubMenu icon={<UserOutlined />} title="My Records" style={{ float: 'right' }}>
+          <Menu.Item title="My Restaurants">
+            <Link to="/my-restaurants">My Restaurants</Link>
+          </Menu.Item>
+          <Menu.ItemGroup title="My Requests">
+            <Menu.Item key="setting:1">
+              <Link to="/request-restaurant">Menu Requests</Link>
+            </Menu.Item>
+            <Menu.Item key="setting:2">
+              <Link to="/booking-requests">Booking Requests</Link>
+            </Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="My Cart">
+            <Menu.Item key="setting:3">
+              <Link to="/your-orders">Your Orders</Link>
+            </Menu.Item>
+            <Menu.Item key="setting:4">
+              <Link to="/your-bookings">Your Bookings</Link>
+            </Menu.Item>
+            <Menu.Item key="13" onClick={logOut} style={{ float: 'right' }}>
+              Logout
+            </Menu.Item>
+          </Menu.ItemGroup>
+        </SubMenu>
+
+      </Menu>
+      <Menu>
+
       </Menu>
     </Header>
   )
