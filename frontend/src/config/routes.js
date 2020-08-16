@@ -18,6 +18,7 @@ import MyRestaurants from '../components/pages/MyRestaurants'
 import MyRestaurantProfile from '../components/pages/MyRestaurantProfile'
 import YourBookings from '../components/pages/YourBookings'
 import BookingRequests from '../components/pages/BookingRequests'
+import AboutSite from '../components/pages/AboutSite'
 
 const components = {
   bookNow: {
@@ -99,6 +100,10 @@ const components = {
   bookingRequests: {
     url: "/booking-requests",
     page: BookingRequests
+  },
+  aboutSite: {
+    url: "/about-site",
+    page: AboutSite
   }
 };
 
@@ -107,7 +112,8 @@ export default {
     components.login,
     components.register,
     components.registerFail,
-    components.contactUs
+    components.contactUs,
+    components.aboutSite
   ],
   user: [
     components.yourOrders,
@@ -120,7 +126,8 @@ export default {
     components.restaurantUserView,
     components.contactUs,
     components.becomeOwner,
-    components.yourBookings
+    components.yourBookings,
+    components.aboutSite
   ],
   'restaurant-owner': [
     components.home,
@@ -137,6 +144,7 @@ export default {
     components.becomeOwner,
     components.bookNow,
     components.yourBookings,
-    components.bookingRequests
+    components.bookingRequests,
+    components.aboutSite
   ]
 }

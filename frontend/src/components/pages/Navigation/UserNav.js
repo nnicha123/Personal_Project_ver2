@@ -46,6 +46,9 @@ function GuestNav(props) {
             </Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
+        <Menu.Item key="14" style={{ float: 'right' }}>
+          <Link to="/about-site">About Site</Link>
+        </Menu.Item>
       </Menu>
     </Header>
   )
