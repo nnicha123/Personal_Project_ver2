@@ -28,10 +28,10 @@
       rgba(255, 255, 255, 1),
       rgba(200, 226, 250, 0.8)
     ),
-    url(./../../templetwo.jpg);
+    url(./../../everest.jpg);
   background-size: cover;
   padding-bottom: 30px;
-  /* background-position: top; */
+  background-position: top;
   /* clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%); */
   position: relative;
 }

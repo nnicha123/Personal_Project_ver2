@@ -14,7 +14,7 @@ function Menu() {
     let values = selectedMenu[index]
     values["status"] = "pending"
     values["user_id"] = localStorage.getItem("id")
-    axios.post(`/order/${userId}/${selectedMenu[index].id}`, values).then(res => console.log(res))
+    axios.post(`/order/${userId}/${selectedMenu[index].id}`, values).then(res => { window.location.replace('/your-orders') })
   }
   const [selectedMenu, setSelectedMenu] = useState([])
   const [userId, setUserId] = useState(localStorage.getItem("id"))

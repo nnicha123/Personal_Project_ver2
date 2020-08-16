@@ -18,7 +18,7 @@ function YourBookings() {
 
   useEffect(() => {
     axios.get(`/book`).then(res => {
-      console.log(res.data[0].date.substr(0, 10))
+      // console.log(res.data[0].date.substr(0, 10))
       setYourOrders(res.data)
     })
   }, [])
@@ -75,7 +75,7 @@ function YourBookings() {
                   {el.status != 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
                     {/* <img src={el.menu_pic} /> */}
                     <div>{el.restaurantName}</div>
-                    <div>{el.date.substr(1, 5)}, {el.time}</div>
+                    <div>{el.date.substr(0, 10)}, {el.time}</div>
                     <div>Paid: ${el.paidTotal}</div>
                     <div>{el.status}</div>
                     <div>

@@ -94,11 +94,6 @@ function BookingRequests() {
                   </div>}
                 </li>)
               })}
-              <li>
-                <div className="orderDark" onClick={() => window.location.replace('/home')}>
-                  <PlusCircleOutlined />
-                </div>
-              </li>
             </ul>
           </div>
         </div>

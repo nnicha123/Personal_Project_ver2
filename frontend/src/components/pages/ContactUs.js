@@ -8,30 +8,33 @@ import GuestNav from './Navigation/GuestNav';
 import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
+import Footer from './Footer';
 
 
 const { Content } = Layout;
 
 function Login() {
   return (
-    <div className="topResOuter">
-      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"6"} /> : LocalStorageService.getUserRole() === 'restaurant-owner' ? <RestaurantNav selected={"6"} /> : <GuestNav selected={"2"} />}
-      <Content className="contactOuter">
-        <div className="contact">
-          <h1>CONTACT US</h1>
-          <div className="contact-grid">
-            <div>
-              <h2>Phone</h2>
-              <p>000-000-0000</p>
-            </div>
-            <div>
-              <h2>Email</h2>
-              <p>Test@test.com</p>
+    <div>
+      <div className="topResOuter">
+        {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"6"} /> : LocalStorageService.getUserRole() === 'restaurant-owner' ? <RestaurantNav selected={"6"} /> : <GuestNav selected={"2"} />}
+        <Content className="contactOuter">
+          <div className="contact">
+            <h1>CONTACT US</h1>
+            <div className="contact-grid">
+              <div>
+                <h2>Phone</h2>
+                <p>000-000-0000</p>
+              </div>
+              <div>
+                <h2>Email</h2>
+                <p>Test@test.com</p>
+              </div>
             </div>
           </div>
-        </div>
-
-      </Content>
+        </Content>
+      </div>
+      <Footer />
     </div>
   )
 }
