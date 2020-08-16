@@ -11,16 +11,30 @@ import Footer from './Footer'
 function Promotions() {
   const [selectedProMenu, setSelectedProMenu] = useState([])
   const [randomRating, setRandomRating] = useState([])
+  const [userId, setUserId] = useState(localStorage.getItem("id"))
+
+  const buyItem = (index) => {
+    console.log(selectedProMenu[index])
+    let values = selectedProMenu[index]
+    values["status"] = "pending"
+    values["user_id"] = localStorage.getItem("id")
+    axios.post(`/order/${userId}/${selectedProMenu[index].id}`, values).then(res => { window.location.replace('/your-orders') })
+  }
 
   useEffect(() => {
     axios.get('/menu').then(res => {
-      let promoOnly = res.data.filter(el => el.promotion === true)
+      console.log(res)
+      let promoOnly = res.data.filter(el => {
+        return el.promotion === true
+      })
+      console.log(promoOnly)
       setSelectedProMenu(promoOnly)
+      // console.log(promoOnly)
       let randRateArr = []
       for (let i = 0; i < res.data.length; i++) {
         let randRate = Math.floor(Math.random() * 6) + 1
         randRateArr.push(randRate)
-        console.log(randRateArr)
+        // console.log(randRateArr)
       }
       setRandomRating(randRateArr)
     })
@@ -45,7 +59,7 @@ function Promotions() {
                 <div className="contentDiv">
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div>{el.title}</div>
-                    <div><Button style={{ width: '70px' }}>View</Button></div>
+                    <div><Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button></div>
                     {/* <div>Rating : {el.average_rating}/5</div> */}
                   </div>
                   <div><Rate allowHalf value={randomRating[index]} /></div>

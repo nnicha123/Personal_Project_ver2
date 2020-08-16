@@ -71,17 +71,22 @@
   padding: 20px;
   width: 700px;
   margin: 10px;
+  margin-bottom: 20px;
   height: 200px;
+  background: #ffffffdc;
 }
 .descriptionSmall {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
   width: 700px;
-  margin: 10px;
+  margin: 20px;
+  margin-left: 10px;
   height: 100px;
   display: flex;
   justify-content: space-between;
+  background: #ffffffdc;
 }
+
 .descriptionOwner {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;

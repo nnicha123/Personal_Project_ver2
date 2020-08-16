@@ -102,14 +102,14 @@ function MyRestaurantProfile() {
               return (<div className="descriptionOwner" key={el.createdAt}>
                 {!el.reported && <div className="commentTop">
                   <div>{el.comment}</div>
-                  <div>{el.no_of_stars}/5</div>
+                  <div><div> <Rate allowHalf value={el.no_of_stars} /></div></div>
                 </div>}
                 {el.reported && <div className="commentTop">
-                  <i>This comment is inappropriate</i>
+                  <i>This comment is inappropriate, and was hidden by you</i>
                 </div>}
                 <div className="deleteReport">
                   <Button type="primary" onClick={() => deleteComment(el.user_id)}>Delete</Button>
-                  <Button type="dashed" onClick={() => reportComment(el.user_id)}>Report</Button>
+                  {!el.reported && <Button type="dashed" onClick={() => reportComment(el.user_id)}>Report</Button>}
                 </div>
               </div>)
             })
@@ -120,7 +120,7 @@ function MyRestaurantProfile() {
 
         </div>
 
-        <div className="retaurantMenusMap">
+        <div className="retaurantMenusMap" style={{ marginTop: '25px' }}>
           {menus.map(el => {
             return (
               <div key={el.id} className="usermenuRestaurants">
@@ -132,7 +132,6 @@ function MyRestaurantProfile() {
                     <div>{el.title}</div>
                     {/* <div>Rating : {el.average_rating}/5</div> */}
                   </div>
-                  <Button style={{ width: '70px' }}>View</Button>
                 </div>
 
               </div>

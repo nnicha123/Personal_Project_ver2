@@ -10,7 +10,7 @@ export default function Step1(props) {
 
         <Form.Item className="form-group">
             {/* <FormItemLabel htmlFor="date">Select Dine Date</FormItemLabel> */}
-            <h3>Please select date and time in which you wish to dine with us</h3>
+            <h3>Please select date in which you wish to dine with us</h3>
             <p>We are open everyday on weekdays, but please excuse our holidays!</p>
             <DatePicker style={{ width: '400px' }}
                 className="form-control"

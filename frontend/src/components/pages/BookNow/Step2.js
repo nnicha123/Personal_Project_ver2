@@ -10,7 +10,7 @@ export default function Step1(props) {
         <Form.Item className="form-group">
             <FormItemLabel htmlFor="restaurantName">Restaurant Name</FormItemLabel>
             <h3>Please confirm restaurant name</h3>
-            <p>You will enjoy either we promise!</p>
+            <p>You will enjoy all of them, we promise!</p>
             <Input style={{ width: '400px' }}
                 className="form-control"
                 id="restaurantName"

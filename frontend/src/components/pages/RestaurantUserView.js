@@ -78,7 +78,7 @@ function RestaurantUserView(props) {
             {
               feedbacks.map(el => {
                 return (<div className="descriptionSmall">
-                  {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
+                  {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', }} >
                     <div>{el.comment}</div>
                     <div> <Rate allowHalf value={el.no_of_stars} /></div>
                   </div>}
@@ -105,7 +105,7 @@ function RestaurantUserView(props) {
                 </span>
               </div>
             Add Comments
-            <textarea className="textArea" type="text" style={{ width: '100%', marginTop: '10px' }} value={comment} onChange={(e) => setComment(e.target.value)} />
+            <textarea className="textArea" type="text" style={{ width: '100%', margin: '10px 0' }} value={comment} onChange={(e) => setComment(e.target.value)} />
               <div>
                 <Button type="primary" style={{ margin: 0 }} onClick={() => addRestaurantFeedback()}>Add Feedback</Button>
                 <Button>
