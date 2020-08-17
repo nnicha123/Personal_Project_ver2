@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons';
+import axios from '../../../config/axios';
+import Avatar from 'antd/lib/avatar/avatar';
+
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -12,6 +15,15 @@ const logOut = () => {
 }
 
 function GuestNav(props) {
+
+  const [profilePic, setProfilePic] = useState('')
+
+  useEffect(() => {
+    axios.get(`/user/${localStorage.getItem("id")}`).then(res => {
+      setProfilePic(res.data.profile_pic)
+    })
+  })
+
   return (
     <Header>
       <div className="logo" />
@@ -33,7 +45,7 @@ function GuestNav(props) {
           <Link to="/become-owner">Become Owner</Link>
         </Menu.Item>
 
-        <SubMenu icon={<UserOutlined />} title="My Records" style={{ float: 'right' }}>
+        <SubMenu icon={<Avatar shape="square" size={20} src={profilePic} />} title=" My Records" style={{ float: 'right' }}>
           <Menu.ItemGroup title="My Cart">
             <Menu.Item key="setting:3">
               <Link to="/your-orders">Your Orders</Link>
@@ -46,9 +58,9 @@ function GuestNav(props) {
             </Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="14" style={{ float: 'right' }}>
+        {/* <Menu.Item key="14" style={{ float: 'right' }}>
           <Link to="/about-site">About Site</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </Header>
   )

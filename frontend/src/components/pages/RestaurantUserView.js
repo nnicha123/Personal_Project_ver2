@@ -36,7 +36,7 @@ function RestaurantUserView(props) {
 
   useEffect(() => {
     axios.get(`/restaurant/${user_id}/${restaurant_id}`).then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       setRestaurant(res.data)
       axios.get(`/menu/${restaurant_id}`).then(res => {
         setMenus(res.data)
@@ -49,8 +49,11 @@ function RestaurantUserView(props) {
             sum += Number(res.data[i].no_of_stars)
           }
           averageRating = sum / res.data.length
+          if (!averageRating) {
+            averageRating = 0
+          }
           setAvgRating(averageRating)
-          axios.put(`/restaurant/${restaurant_id}`, { average_rating: averageRating }).then(res => console.log(res.data))
+          axios.put(`/restaurant/${restaurant_id}`, { average_rating: averageRating }).then(res => { })
         })
       })
     })

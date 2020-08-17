@@ -16,6 +16,7 @@ function MyRestaurants() {
   const [newPic, setNewPic] = useState('')
   const [firstName, setFirstName] = useState('User')
   const [addRestaurantForm, setAddRestaurantForm] = useState(false)
+  const [changePicArr, setChangePicArr] = useState([])
 
   const changeProfilePicHandler = (index) => {
     axios.put(`/restaurant/${restaurants[index].id}`, { profile_pic: newPic }).then(res => window.location.reload())
@@ -27,11 +28,21 @@ function MyRestaurants() {
     window.location.replace('/my-restaurants/profile')
   }
 
+  const changeResPicHandler = (index) => {
+    let newArr = [...changePicArr]
+    newArr[index] = true
+    setChangePicArr(newArr)
+  }
+
   useEffect(() => {
     localStorage.removeItem("resId")
     axios.get(`/restaurant/${user_id}`).then(res => {
-      console.log(res)
+      // console.log(res)
       setRestaurants(res.data)
+      for (let i = 0; i < res.data.length; i++) {
+        changePicArr.push(false)
+      }
+      console.log(changePicArr[0])
       axios.get(`/user/${user_id}`).then(res => {
         setFirstName(res.data.first_name)
       })
@@ -53,8 +64,8 @@ function MyRestaurants() {
               <div key={el.id} className="Restaurants">
                 <div className="imageDiv">
                   <img src={el.profile_pic} />
-                  {!changePic && <Button className="profilePicChangeButton" onClick={() => setChangePic(true)}>Change</Button>}
-                  {changePic && <span className="changePic">
+                  {!changePicArr[index] && <Button className="profilePicChangeButton" onClick={() => changeResPicHandler(index)}>Change</Button>}
+                  {changePicArr[index] && <span className="changePic">
                     <Input placeholder="Enter new profile pic url" value={newPic} onChange={(e) => { setNewPic(e.target.value) }} />
                     <Button onClick={() => changeProfilePicHandler(index)}>Submit</Button>
                   </span>}

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from '../../../config/axios'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom'
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, BellFilled } from '@ant-design/icons';
+import { Avatar, Badge } from 'antd';
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -13,12 +15,23 @@ const logOut = () => {
 }
 
 function RestaurantNav(props) {
+
+  const [profilePic, setProfilePic] = useState('')
+
+  useEffect(() => {
+    axios.get(`/user/${localStorage.getItem("id")}`).then(res => {
+      setProfilePic(res.data.profile_pic)
+    })
+  }, [])
+
   return (
     <Header>
       <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={props.selected}>
+
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={props.selected} notifyUser={props.notify}>
         <Menu.Item key="1">
-          <Link to="/home">Logo</Link>
+          <Link to="/home">Logo {props.notify}</Link>
+
         </Menu.Item>
         <Menu.Item key="2">
           <Link to="/home">Home</Link>
@@ -29,16 +42,15 @@ function RestaurantNav(props) {
         <Menu.Item key="4">
           <Link to="/promotions">Promotions</Link>
         </Menu.Item>
-        <Menu.Item key="9" style={{ float: 'right' }}>
-          <Link to="/become-owner" >Add Restaurant</Link>
-        </Menu.Item>
-        <SubMenu icon={<UserOutlined />} title="My Records" style={{ float: 'right' }}>
+        <SubMenu icon={<Avatar shape="square" size={20} src={profilePic} />} title="  My Records" style={{ float: 'right' }}>
           <Menu.Item title="My Restaurants">
             <Link to="/my-restaurants">My Restaurants</Link>
           </Menu.Item>
           <Menu.ItemGroup title="My Requests">
             <Menu.Item key="setting:1">
-              <Link to="/request-restaurant">Menu Requests</Link>
+              <Badge count={1}>
+                <Link to="/request-restaurant">Menu Requests</Link>
+              </Badge>
             </Menu.Item>
             <Menu.Item key="setting:2">
               <Link to="/booking-requests">Booking Requests</Link>
@@ -56,15 +68,15 @@ function RestaurantNav(props) {
             </Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="14" style={{ float: 'right' }}>
-          <Link to="/about-site">About Site</Link>
+        <Menu.Item key="9" style={{ float: 'right' }}>
+          <Link to="/become-owner" >Add Restaurant</Link>
         </Menu.Item>
-
       </Menu>
-      <Menu>
-
-      </Menu>
-    </Header>
+      {/* <Menu>
+        <h1>{props.notify}</h1>
+        ergf
+      </Menu> */}
+    </Header >
   )
 }
 

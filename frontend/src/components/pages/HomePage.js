@@ -18,18 +18,25 @@ function HomePage() {
   }
 
   const [selectedRes, setSelectedRes] = useState([])
+  const [notification, setNotification] = useState(false)
+
   useEffect(() => {
     localStorage.removeItem("resId")
     axios.get('/restaurant').then(res => {
       setSelectedRes(res.data)
-      console.log(res.data)
+      axios.get(`/notification/${localStorage.getItem("id")}`).then(res => {
+        if (res.data.booking_request || res.data.menu_request || res.data.your_booking || res.data.your_order) {
+          setNotification(true)
+        }
+      }
+      )
     })
   }, [])
 
 
   return (
     <div>
-      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"2"} /> : <RestaurantNav selected={"2"} />}
+      {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"2"} /> : <RestaurantNav selected={"2"} notify={notification} />}
       <div className="homeBanner">
         <img src="restaurants/fishchips.jpg" />
       </div>

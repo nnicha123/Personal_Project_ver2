@@ -27,7 +27,12 @@ class MasterForm extends React.Component {
         event.preventDefault();
         const { date, time, restaurantName, paidTotal } = this.state
         axios.post(`/book/${localStorage.getItem("id")}/${localStorage.getItem("resId")}`, { date, time, restaurantName, paidTotal }).then(res => {
-            window.location.replace('/your-bookings')
+            // window.location.replace('/your-bookings')
+            axios.get(`/restaurant/1/${localStorage.getItem("resId")}`).then(res => {
+                axios.post(`/notification/${res.data.user_id}`, { booking_request: 1 }).then(res => {
+                    window.location.replace('/your-bookings')
+                })
+            })
         })
     }
     _next = () => {

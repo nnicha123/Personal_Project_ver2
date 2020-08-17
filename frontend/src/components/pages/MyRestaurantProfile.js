@@ -52,6 +52,9 @@ function MyRestaurantProfile() {
             sum += Number(res.data[i].no_of_stars)
           }
           averageRating = sum / res.data.length
+          if (!averageRating) {
+            averageRating = 0
+          }
           setAvgRating(averageRating)
         })
       })
