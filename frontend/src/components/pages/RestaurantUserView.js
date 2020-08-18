@@ -33,7 +33,7 @@ function RestaurantUserView(props) {
     let values = menus[index]
     values["status"] = "pending"
     values["user_id"] = localStorage.getItem("id")
-    axios.post(`/order/${user_id}/${menus[index].id}`, values).then(res => console.log(res))
+    axios.post(`/order/${user_id}/${menus[index].id}`, values).then(res => { window.location.replace('/your-orders') })
   }
 
   useEffect(() => {
