@@ -5,7 +5,7 @@ import LocalStorageService from '../../services/LocalStorageService'
 import axios from '../../config/axios'
 import '../css/Promotions.css'
 import { Button, Rate } from 'antd'
-import { StarFilled } from '@ant-design/icons';
+import { StarFilled, ShoppingFilled } from '@ant-design/icons';
 import Footer from './Footer'
 
 function Promotions() {
@@ -47,7 +47,7 @@ function Promotions() {
       </div>
       <div className="topResOuter">
         <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
-          <h2 style={{ margin: '30px 10px' }}>Today's Promotions!!!</h2>
+          <h2 className="descriptionTagsH2" style={{ margin: '30px 10px' }}>Today's Promotions!!!</h2>
         </div>
         <div className="myhomeRestaurants" style={{ margin: '0 auto' }}>
           {selectedProMenu.map((el, index) => {
@@ -57,12 +57,15 @@ function Promotions() {
                   <img src={el.menu_pic} />
                 </div>
                 <div className="contentDiv">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <div>{el.title}</div>
-                    <div><Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button></div>
-                    {/* <div>Rating : {el.average_rating}/5</div> */}
+                    <div><b>${el.price}</b></div>
                   </div>
-                  <div><Rate allowHalf value={randomRating[index]} /></div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div><Rate allowHalf value={randomRating[index]} /></div>
+                    <div><ShoppingFilled style={{ fontSize: '20px', color: '#001529' }} onClick={() => { buyItem(index) }} /></div>
+                  </div>
+
                   <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />
                 </div>
               </div>

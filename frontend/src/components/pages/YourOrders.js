@@ -46,13 +46,13 @@ function YourOrders() {
         <div className="orderOuter">
           <div className="orderBox">
             <h2 style={{ margin: '30px', marginBottom: '0' }} >Pending Orders</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <ul style={{ marginTop: '20px', 'padding-inline-start': '0px' }}>
               {yourOrders.map((el, index) => {
                 return (<li key={el.id}>
                   {el.status === 'pending' && <div className={"order "}>
-                    <img src={el.menu_pic} />
+                    <img src={el.menu_pic} className="pendingImg" />
                     <div>{el.title}</div>
-                    <div>{el.quantity} x ${el.price}</div>
+                    <div className="quantityPrice">{el.quantity} x ${el.price}</div>
                     <div>
                       <div>
                         <select name="Quantity" onChange={(e) => setNewQuantity(e.target.value)}>
@@ -66,10 +66,10 @@ function YourOrders() {
                       </div>
 
                     </div>
-                    <div>{el.status}</div>
-                    <div>
-                      <Button type="primary" style={{ margin: 0 }} onClick={() => updateQuantity(el.menu_id)}>Update</Button>
-                      <Button onClick={() => cancelBuy(el.menu_id)}>Cancel</Button>
+                    <div className="status">{el.status}</div>
+                    <div style={{ display: 'flex' }}>
+                      <Button type="primary" style={{ margin: 0 }} className="pendingButtons" onClick={() => updateQuantity(el.menu_id)}>Update</Button>
+                      <Button onClick={() => cancelBuy(el.menu_id)} className="pendingButtons">Cancel</Button>
 
                     </div>
                   </div>}
@@ -84,7 +84,7 @@ function YourOrders() {
           </div>
           <div className="orderBox">
             <h2 style={{ margin: '30px', marginBottom: '0' }} >Purchase History</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <ul style={{ marginTop: '20px', 'padding-inline-start': '0px' }}>
               {purchaseHistory.map((el, index) => {
                 return (<li key={el.id}>
                   <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
@@ -92,7 +92,7 @@ function YourOrders() {
                     <div>{el.title}</div>
                     <div>{el.quantity} x ${el.price}</div>
 
-                    <div>{el.status}</div>
+                    <div className="status">{el.status}</div>
                     <div>
                       <Button onClick={() => deletePurchaseHistory(el.id)}>Delete</Button>
                     </div>

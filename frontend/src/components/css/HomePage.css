@@ -21,7 +21,6 @@
   height: 100%;
 }
 .topResOuter {
-  /* min-height: 130vh; */
   height: max-content;
   background-image: linear-gradient(
       to right,
@@ -40,13 +39,17 @@
   display: grid;
   width: 80%;
   grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  /* margin-top: 20px; */
   /* margin-left: 40px; */
 }
 .homeRestaurants {
-  width: 220px;
-  height: max-content;
+  width: 1fr;
+  height: 100%;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  margin: 10px;
+  /* margin-top: 20px; */
+  /* margin: 10px; */
   overflow: hidden;
   text-align: left;
   position: relative;
@@ -74,4 +77,49 @@
 
 .contentDiv {
   padding: 10px;
+}
+
+@media only screen and (max-width: 1100px) {
+  .myhomeRestaurants {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .homeImageDiv {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+  }
+}
+@media only screen and (max-width: 861px) {
+  .myhomeRestaurants {
+    grid-template-columns: repeat(2, 1fr);
+    /* margin-left: 40px; */
+  }
+
+  .homeImageDiv {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .homeBanner:after {
+    content: '';
+  }
+}
+@media only screen and (max-width: 683px) {
+  .descriptionTagsH2 {
+    font-size: 19px;
+  }
+  .descriptionTagsH3 {
+    font-size: 0;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .myhomeRestaurants {
+    grid-template-columns: repeat(1, 1fr);
+    /* margin-left: 40px; */
+  }
+  .homeImageDiv {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
 }

@@ -6,7 +6,7 @@ import MenuRestaurant from './MenuRestaurant'
 import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
 import LocalStorageService from '../../services/LocalStorageService'
-import { PlusCircleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined, UserOutlined, StarFilled, ShoppingFilled } from '@ant-design/icons';
 import { Form, Input, Button, Rate } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import Footer from './Footer'
@@ -22,6 +22,8 @@ function MyRestaurantProfile() {
   const [newCover, setNewCover] = useState('')
   const [addMenuForm, setAddMenuForm] = useState(false)
   const [avg_rating, setAvgRating] = useState(0)
+  const [randomRating, setRandomRating] = useState([])
+
 
   const onFinish = values => {
     console.log(values)
@@ -43,6 +45,12 @@ function MyRestaurantProfile() {
       setRestaurant(res.data)
       axios.get(`/menu/${restaurant_id}`).then(res => {
         setMenus(res.data)
+        let randRateArr = []
+        for (let i = 0; i < res.data.length; i++) {
+          let randRate = Math.floor(Math.random() * 6) + 1
+          randRateArr.push(randRate)
+        }
+        setRandomRating(randRateArr)
         axios.get(`/feedback-rest/${restaurant_id}`).then(res => {
           console.log(res.data)
           setFeedbacks(res.data)
@@ -78,6 +86,13 @@ function MyRestaurantProfile() {
     axios.put(`/restaurant/${restaurant_id}`, { cover_pic: newCover }).then(res => window.location.reload())
   }
 
+  const buyItem = (index) => {
+    console.log(menus[index])
+    let values = menus[index]
+    values["status"] = "pending"
+    values["user_id"] = localStorage.getItem("id")
+    axios.post(`/order/${user_id}/${menus[index].id}`, values).then(res => console.log(res))
+  }
   return (
     <div>
       {LocalStorageService.getUserRole() === 'user' ? <UserNav selected={"8"} /> : <RestaurantNav selected={"7"} />}
@@ -93,13 +108,13 @@ function MyRestaurantProfile() {
         </div>
         <div className="profileContents">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '730px' }}>
-            <h3 style={{ marginLeft: '10px', fontSize: '40px' }}>{restaurant.name}</h3>
+            <h3 style={{ fontSize: '40px' }}>{restaurant.name}</h3>
           </div>
-          <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
-          <div style={{ margin: '10px', marginBottom: '30px' }}>
+          <p style={{ fontSize: '20px' }}>{restaurant.description}</p>
+          <div style={{ marginBottom: '30px' }}>
             <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
           </div>
-          <h3 style={{ margin: '10px' }}>Comments</h3>
+          <h3>Comments</h3>
           {
             feedbacks.length > 0 && feedbacks.map((el, index) => {
               return (<div className="descriptionOwner" key={el.createdAt}>
@@ -120,87 +135,43 @@ function MyRestaurantProfile() {
           {
             feedbacks.length == 0 && <div className="emptyDiv"><h3>You currently have no comments</h3></div>
           }
-
-        </div>
-
-        <div className="retaurantMenusMap" style={{ marginTop: '25px' }}>
-          {menus.map(el => {
-            return (
-              <div key={el.id} className="usermenuRestaurants">
-                <div className="usermenuImageDiv">
-                  <img src={'../' + el.menu_pic} />
-                </div>
-                <div className="usermenucontentDiv">
-                  <div>
-                    <div>{el.title}</div>
-                    {/* <div>Rating : {el.average_rating}/5</div> */}
+          <div className="myUserView">
+            {menus.map((el, index) => {
+              return (
+                <div key={el.id} className="homeRestaurants">
+                  <div className="homeImageDiv">
+                    <img src={'../' + el.menu_pic} />
+                  </div>
+                  {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
+                  <div className="contentDiv">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                      <div>{el.title}</div>
+                      <div><b>${el.price}</b></div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div><Rate allowHalf value={randomRating[index]} /></div>
+                      <div>
+                        <ShoppingFilled style={{ fontSize: '20px', color: '#001529' }} onClick={() => { buyItem(index) }} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-              </div>
-            )
-          })}
-          {!addMenuForm && <div className="addMenuRes" onClick={addMenu}>
-            <PlusCircleOutlined />
-          </div>}
-          {addMenuForm && <div className="addMenuResForm">
-            <Form style={{ margin: '15px' }}
-              name="normal_login"
-              className="login-form"
-              initialValues={{
-                remember: true,
-              }}
-              onFinish={onFinish}
-            >
-              <Form.Item style={{ marginBottom: '5px' }}
-                name="title"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your title!',
-                  },
-                ]}
+              )
+            })}
+            {!addMenuForm && <div className="addMenuRes" onClick={addMenu}>
+              <PlusCircleOutlined />
+            </div>}
+            {addMenuForm && <div className="addMenuResForm">
+              <Form style={{ margin: '15px' }}
+                name="normal_login"
+                className="login-form"
+                initialValues={{
+                  remember: true,
+                }}
+                onFinish={onFinish}
               >
-                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Title" />
-              </Form.Item>
-              <Form.Item style={{ marginBottom: '5px' }}
-                name="description"
-                rules={[
-                  {
-                    required: false
-                  },
-                ]}
-              >
-                <TextArea
-                  prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Description"
-                />
-              </Form.Item>
-              <Form.Item style={{ marginBottom: '5px' }}
-                name="menu_pic"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your title!',
-                  },
-                ]}
-              >
-                <Input placeholder="Menu Picture" />
-              </Form.Item>
-              <div style={{ display: 'flex' }}>
                 <Form.Item style={{ marginBottom: '5px' }}
-                  name="category"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please input your category!',
-                    },
-                  ]}
-                >
-                  <Input placeholder="Category" />
-                </Form.Item>
-                <Form.Item style={{ marginBottom: '5px' }}
-                  name="price"
+                  name="title"
                   rules={[
                     {
                       required: true,
@@ -208,22 +179,69 @@ function MyRestaurantProfile() {
                     },
                   ]}
                 >
-                  <Input type="number" placeholder="Price" />
+                  <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Title" />
                 </Form.Item>
-              </div>
-              <Form.Item style={{ marginBottom: '10px' }}
-                name="promotion"
-              >
-                <Input type="boolean" placeholder="Promotion? (true/false)" />
-              </Form.Item>
-              <div style={{ display: 'flex', justifyContent: 'center' }} >
-                <Button style={{ marginRight: 0 }} type="primary" htmlType="submit" className="login-form-button">Add Menu</Button>
-                <Button style={{ marginLeft: 0 }} onClick={() => setAddMenuForm(false)}>Cancel</Button>
-              </div>
-            </Form>
-          </div>}
+                <Form.Item style={{ marginBottom: '5px' }}
+                  name="description"
+                  rules={[
+                    {
+                      required: false
+                    },
+                  ]}
+                >
+                  <TextArea
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    placeholder="Description"
+                  />
+                </Form.Item>
+                <Form.Item style={{ marginBottom: '5px' }}
+                  name="menu_pic"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input your title!',
+                    },
+                  ]}
+                >
+                  <Input placeholder="Menu Picture" />
+                </Form.Item>
+                <div style={{ display: 'flex' }}>
+                  <Form.Item style={{ marginBottom: '5px' }}
+                    name="category"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please input your category!',
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Category" />
+                  </Form.Item>
+                  <Form.Item style={{ marginBottom: '5px' }}
+                    name="price"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please input your title!',
+                      },
+                    ]}
+                  >
+                    <Input type="number" placeholder="Price" />
+                  </Form.Item>
+                </div>
+                <Form.Item style={{ marginBottom: '10px' }}
+                  name="promotion"
+                >
+                  <Input type="boolean" placeholder="Promotion? (true/false)" />
+                </Form.Item>
+                <div style={{ display: 'flex', justifyContent: 'center' }} >
+                  <Button style={{ marginRight: 0 }} type="primary" htmlType="submit" className="login-form-button">Add Menu</Button>
+                  <Button style={{ marginLeft: 0 }} onClick={() => setAddMenuForm(false)}>Cancel</Button>
+                </div>
+              </Form>
+            </div>}
+          </div>
         </div>
-
       </div>
       <Footer />
     </div>

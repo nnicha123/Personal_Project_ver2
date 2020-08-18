@@ -81,18 +81,17 @@ function RequestRestaurant() {
         <div className="orderOuter">
           <div className="orderBox">
             <h2 style={{ margin: '30px' }}>Current Orders</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <ul style={{ marginTop: '40px', 'padding-inline-start': '0px' }}>
               {menuPost.map((el, index) => {
                 return (<li key={el.createdAt}>
                   <div className="order">
-                    <img src={el.menu_pic} />
+                    <img src={el.menu_pic} className="pendingImg" />
                     <div>{el.title}</div>
-                    <div>${el.price}</div>
-                    <div>{el.quantity}</div>
-                    <div>{el.status}</div>
-                    <div>
-                      <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.menu_id, index)}> ACCEPT</Button>
-                      <Button onClick={() => declineRequest(el.user_id, el.menu_id, index)}>DECLINE</Button>
+                    <div className="quantityPrice">{el.quantity} x ${el.price}</div>
+                    <div className="status">{el.status}</div>
+                    <div style={{ display: 'flex' }}>
+                      <Button style={{ marginRight: '0' }} onClick={() => acceptRequest(el.user_id, el.menu_id, index)} className="pendingButtons"> Accept</Button>
+                      <Button onClick={() => declineRequest(el.user_id, el.menu_id, index)} className="pendingButtons">Decline</Button>
                     </div>
                     {/* <div>
                     <CheckCircleOutlined />
@@ -103,16 +102,16 @@ function RequestRestaurant() {
             </ul>
           </div>
           <div className="orderBox">
-            <h2 style={{ margin: '30px' }}>Resolved Orders</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <h2>Resolved Orders</h2>
+            <ul style={{ 'padding-inline-start': '0px' }}>
               {doneRequests.map((el, index) => {
                 return (<li key={el.id} >
                   <div className="order" style={{ background: 'grey' }}>
-                    <img src={el.menu_pic} />
+                    <img src={el.menu_pic} className="pendingImg" />
                     <div>{el.title}</div>
-                    <div>${el.price}</div>
-                    <div>{el.createdAt}</div>
-                    <div>{el.status}</div>
+
+                    <div className="quantityPrice">{el.quantity} x ${el.price}</div>
+                    <div className="status">{el.status}</div>
                     <div>
                       <Button style={{ marginRight: '0' }} onClick={() => deleteOrder(el.orderedBy, el.id)}> Delete</Button>
                     </div>

@@ -58,7 +58,7 @@ function MyRestaurants() {
         <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
           <h2 style={{ margin: '30px 10px' }}>Welcome {firstName}, Here are your current restaurants!</h2>
         </div>
-        <div className="myRestaurants" style={{ margin: '0 auto' }}>
+        <div className="myRestaurants" style={{ margin: '30px auto' }}>
           {restaurants.map((el, index) => {
             return (
               <div key={el.id} className="Restaurants">

@@ -5,7 +5,7 @@ import LocalStorageService from '../../services/LocalStorageService'
 import axios from '../../config/axios'
 import '../css/Menu.css'
 import { Button, Rate } from 'antd'
-import { StarFilled } from '@ant-design/icons';
+import { StarFilled, ShoppingFilled } from '@ant-design/icons';
 import Footer from './Footer'
 
 function Menu() {
@@ -40,7 +40,7 @@ function Menu() {
       </div>
       <div className="topResOuter">
         <div style={{ width: '80%', margin: '0 auto', paddingTop: '30px' }}>
-          <h2 style={{ margin: '30px 10px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
+          <h2 className="descriptionTagsH2" style={{ margin: '30px 10px' }}>Not free to dine in? Not a problem! Checkout our takeaways!</h2>
         </div>
 
         <div className="myhomeRestaurants" style={{ margin: '0 auto' }}>
@@ -52,11 +52,16 @@ function Menu() {
                 </div>
                 {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
                 <div className="contentDiv">
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <div>{el.title}</div>
-                    <div><Button class="buyButton" onClick={() => { buyItem(index) }}>Buy</Button></div>
+                    <div><b>${el.price}</b></div>
                   </div>
-                  <div><Rate allowHalf value={randomRating[index]} /></div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div><Rate allowHalf value={randomRating[index]} /></div>
+                    <div>
+                      <ShoppingFilled style={{ fontSize: '20px', color: '#001529' }} onClick={() => { buyItem(index) }} />
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -65,7 +70,7 @@ function Menu() {
         </div>
       </div>
       <Footer />
-    </div>
+    </div >
   )
 }
 

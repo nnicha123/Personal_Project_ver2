@@ -28,7 +28,7 @@ function RestaurantNav(props) {
     <Header>
       <div className="logo" />
 
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={props.selected} notifyUser={props.notify}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={props.selected}>
         <Menu.Item key="1">
           <Link to="/home">Logo {props.notify}</Link>
 

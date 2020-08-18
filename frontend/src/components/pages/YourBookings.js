@@ -43,7 +43,7 @@ function YourBookings() {
         <div className="orderOuter">
           <div className="orderBox">
             <h2 style={{ margin: '30px', marginBottom: '0' }} >Current Bookings</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <ul style={{ marginTop: '40px', 'padding-inline-start': '0px' }}>
               {yourOrders.map((el, index) => {
                 return (<li key={el.id}>
                   {el.status == 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
@@ -51,7 +51,7 @@ function YourBookings() {
                     <div>{el.restaurantName}</div>
                     <div>{el.date.substr(0, 10)}, {el.time}</div>
                     <div>Paid: ${el.paidTotal}</div>
-                    <div>{el.status}</div>
+                    <div className="status" >{el.status}</div>
                     <div>
                       {/* <Button type="primary" style={{ margin: 0 }}>Update</Button> */}
                       <Button onClick={() => cancelBuy(el.restaurant_id)}>Cancel</Button>
@@ -69,15 +69,15 @@ function YourBookings() {
           </div>
           <div className="orderBox">
             <h2 style={{ margin: '30px', marginBottom: '0' }} >Past Bookings</h2>
-            <ul style={{ marginTop: '40px' }}>
+            <ul style={{ marginTop: '40px', 'padding-inline-start': '0px' }}>
               {yourOrders.map((el, index) => {
                 return (<li key={el.id}>
                   {el.status != 'pending' && <div className={"order " + (el.status === 'completed' ? 'green' : el.status === 'rejected' ? 'red' : null)}>
                     {/* <img src={el.menu_pic} /> */}
                     <div>{el.restaurantName}</div>
-                    <div>{el.date.substr(0, 10)}, {el.time}</div>
-                    <div>Paid: ${el.paidTotal}</div>
-                    <div>{el.status}</div>
+                    <div style={{ display: 'flex' }}>{el.date.substr(0, 10)}<span className="status">, {el.time}</span></div>
+                    <div style={{ display: 'flex' }}>Paid <span className="status">:${el.paidTotal}</span></div>
+                    <div className="status">{el.status}</div>
                     <div>
                       {/* <Button type="primary" style={{ margin: 0 }}>Update</Button> */}
                       <Button onClick={() => cancelBuy(el.restaurant_id)}>Cancel</Button>

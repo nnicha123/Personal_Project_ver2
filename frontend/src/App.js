@@ -9,7 +9,7 @@ function App() {
   // console.log(role)
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", margin: 0 }}>
       <PrivateRoutes role={role} setRole={setRole} />
     </div>
   );

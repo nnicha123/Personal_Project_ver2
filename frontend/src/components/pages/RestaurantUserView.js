@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Input, Rate } from 'antd'
+import { StarFilled, ShoppingFilled } from '@ant-design/icons';
 import axios from '../../config/axios'
 import UserNav from './Navigation/UserNav'
 import RestaurantNav from './Navigation/RestaurantNav'
@@ -18,6 +19,7 @@ function RestaurantUserView(props) {
   const [rating, setRating] = useState(0)
   const [feedbacks, setFeedbacks] = useState([])
   const [avg_rating, setAvgRating] = useState(0)
+  const [randomRating, setRandomRating] = useState([])
 
   const addRestaurantFeedback = () => {
     if (comment && rating != 0) {
@@ -40,6 +42,13 @@ function RestaurantUserView(props) {
       setRestaurant(res.data)
       axios.get(`/menu/${restaurant_id}`).then(res => {
         setMenus(res.data)
+        let randRateArr = []
+        for (let i = 0; i < res.data.length; i++) {
+          let randRate = Math.floor(Math.random() * 6) + 1
+          randRateArr.push(randRate)
+          // console.log(randRateArr)
+        }
+        setRandomRating(randRateArr)
         axios.get(`/feedback-rest/${restaurant_id}`).then(res => {
           // console.log(res.data)
           setFeedbacks(res.data)
@@ -68,22 +77,22 @@ function RestaurantUserView(props) {
         </div>
         <div className="topResOuter">
           <div className="profileContents">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '730px' }}>
-              <h3 style={{ marginLeft: '10px', fontSize: '40px' }}>{restaurant.name}</h3>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+              <h3 className="resH3Name">{restaurant.name}</h3>
               <Button type="primary">
                 <Link to="/book-now">Book Now</Link>
               </Button>
             </div>
-            <p style={{ marginLeft: '10px', fontSize: '20px' }}>{restaurant.description}</p>
-            <div style={{ margin: '10px', marginBottom: '30px' }}>
+            <p style={{ fontSize: '20px' }}>{restaurant.description}</p>
+            <div style={{ marginBottom: '30px' }}>
               <h3>Average Rating : {avg_rating}/5 <Rate allowHalf value={avg_rating} /></h3>
             </div>
             {
               feedbacks.map(el => {
                 return (<div className="descriptionSmall">
-                  {!el.reported && <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', }} >
+                  {!el.reported && <div>
                     <div>{el.comment}</div>
-                    <div> <Rate allowHalf value={el.no_of_stars} /></div>
+                    <Rate allowHalf value={el.no_of_stars} style={{ display: 'flex' }} />
                   </div>}
                   {
                     el.reported && <div className="commentTop">
@@ -116,28 +125,35 @@ function RestaurantUserView(props) {
                 </Button>
               </div>
             </div>
-
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '80px' }}>
-            {menus.map((el, index) => {
-              return (
-                <div key={el.id} className="usermenuRestaurants">
-                  <div className="usermenuImageDiv">
-                    <img src={el.menu_pic} />
-                  </div>
-                  <div className="usermenucontentDiv">
-                    <div>
-                      <div>{el.title}</div>
-                      {/* <div>Rating : {el.average_rating}/5</div> */}
+            <div className="myUserView">
+              {menus.map((el, index) => {
+                return (
+                  <div key={el.id} className="homeRestaurants">
+                    <div className="homeImageDiv">
+                      <img src={el.menu_pic} />
                     </div>
-                    <Button style={{ width: '70px' }} onClick={() => { buyItem(index) }}>Buy</Button>
+                    {el.promotion && <StarFilled style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '20px', color: 'yellow' }} />}
+                    <div className="contentDiv">
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                        <div>{el.title}</div>
+                        <div><b>${el.price}</b></div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div><Rate allowHalf value={randomRating[index]} /></div>
+                        <div>
+                          <ShoppingFilled style={{ fontSize: '20px', color: '#001529' }} onClick={() => { buyItem(index) }} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
+
+
+
+
         </div>
       </div>
       <Footer />

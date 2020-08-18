@@ -69,8 +69,7 @@
 .description {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
-  width: 700px;
-  margin: 10px;
+  width: 100%;
   margin-bottom: 20px;
   height: 200px;
   background: #ffffffdc;
@@ -78,20 +77,26 @@
 .descriptionSmall {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
-  width: 700px;
-  margin: 20px;
-  margin-left: 10px;
+  width: 100%;
+  margin-bottom: 20px;
   height: 100px;
   display: flex;
   justify-content: space-between;
   background: #ffffffdc;
 }
+.descriptionSmall div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .descriptionOwner {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 20px;
-  width: 700px;
-  margin: 10px;
+  width: 100%;
+  /* margin: 0 10px; */
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   height: 120px;
@@ -101,6 +106,7 @@
 .commentTop {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .deleteReport {
   position: absolute;
@@ -132,15 +138,15 @@
 }
 
 .addMenuRes {
-  width: 200px;
-  height: 230px;
+  width: 100%;
+  height: 100%;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   background-color: rgb(209, 206, 206);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 60px;
-  margin: 10px;
+  /* margin: 10px; */
   /* border-radius: 10px; */
   padding-bottom: 20px;
   overflow: hidden;
@@ -158,4 +164,47 @@
   /* border-radius: 10px; */
   padding-bottom: 20px;
   padding-top: 20px;
+}
+.myUserView {
+  margin-top: 20px;
+  min-height: 30vh;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  /* margin-left: 40px; */
+}
+
+@media only screen and (max-width: 1100px) {
+  .myUserView {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 745px) {
+  .myUserView {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 686px) {
+  .commentTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 596px) {
+  .descriptionSmall div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .usermenuBanner:after {
+    content: '';
+  }
+}
+@media only screen and (max-width: 501px) {
+  .myUserView {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

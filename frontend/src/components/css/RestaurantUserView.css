@@ -7,8 +7,10 @@
   height: 100%;
 }
 .profileContents {
-  padding-left: 80px;
+  margin: auto;
   padding-top: 40px;
+  width: 70%;
+  /* background: grey; */
 }
 .textArea {
   border: none;
@@ -63,4 +65,24 @@
 .image-bannerUserView img {
   width: 100%;
   height: 100%;
+}
+.resH3Name {
+  font-size: 40px;
+}
+@media only screen and (max-width: 927px) {
+  .profileContents {
+    margin: auto;
+    padding-top: 40px;
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 596px) {
+  .resH3Name {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .resH3Name {
+    font-size: 25px;
+  }
 }
